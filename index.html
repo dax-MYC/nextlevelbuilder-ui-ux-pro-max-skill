@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>myconsult — CFO Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" role="navigation" aria-label="Primary navigation">
+      <div class="sidebar__brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="6" fill="var(--color-primary)"/>
+            <path d="M7 20L14 8L21 20H7Z" fill="white" opacity="0.9"/>
+            <circle cx="14" cy="14" r="3" fill="white"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">myconsult</span>
+          <span class="brand-role">CFO Portal</span>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul class="nav-list" role="list">
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-link--active" aria-current="page">
+              <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-6a1 1 0 100 2 1 1 0 000-2zm-1 9v-4a1 1 0 112 0v4a1 1 0 11-2 0z"/>
+              </svg>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+              </svg>
+              <span>Revenue</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/>
+              </svg>
+              <span>Expenses</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+              </svg>
+              <span>Cash Flow</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm2 10a1 1 0 10-2 0v3a1 1 0 102 0v-3zm2-3a1 1 0 011 1v5a1 1 0 11-2 0v-5a1 1 0 011-1zm4-1a1 1 0 10-2 0v7a1 1 0 102 0V8z" clip-rule="evenodd"/>
+              </svg>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+              </svg>
+              <span>Forecasts</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="theme-icon theme-icon--light" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+          </svg>
+          <svg class="theme-icon theme-icon--dark" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+          </svg>
+          <span>Dark Mode</span>
+        </button>
+
+        <div class="user-profile">
+          <div class="avatar" aria-hidden="true">SC</div>
+          <div class="user-info">
+            <span class="user-name">Sarah Chen</span>
+            <span class="user-title">Chief Financial Officer</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <main class="main" id="main-content">
+
+      <!-- Page Header -->
+      <header class="page-header">
+        <div class="page-header__left">
+          <h1 class="page-title">Financial Overview</h1>
+          <p class="page-subtitle">April 8, 2026 &mdash; Q2 FY2026</p>
+        </div>
+        <div class="page-header__right">
+          <div class="period-selector" role="group" aria-label="Time period">
+            <button class="period-btn" data-period="1m">1M</button>
+            <button class="period-btn" data-period="3m">3M</button>
+            <button class="period-btn period-btn--active" data-period="ytd" aria-pressed="true">YTD</button>
+            <button class="period-btn" data-period="1y">1Y</button>
+          </div>
+          <button class="btn btn--outline" aria-label="Export report">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+            Export
+          </button>
+        </div>
+      </header>
+
+      <!-- ============ KPI CARDS ============ -->
+      <section class="kpi-grid" aria-label="Key performance indicators">
+
+        <article class="kpi-card kpi-card--revenue" tabindex="0">
+          <div class="kpi-card__header">
+            <span class="kpi-label">YTD Revenue</span>
+            <span class="kpi-badge kpi-badge--up" aria-label="12.4% increase">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 2l4 4H7v4H5V6H2L6 2z"/></svg>
+              12.4%
+            </span>
+          </div>
+          <div class="kpi-card__value" aria-label="2 million 140 thousand dollars">$2.14M</div>
+          <div class="kpi-card__sub">vs $1.90M prior year</div>
+          <div class="kpi-sparkline" aria-hidden="true">
+            <svg id="sparkline-revenue" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </article>
+
+        <article class="kpi-card kpi-card--profit" tabindex="0">
+          <div class="kpi-card__header">
+            <span class="kpi-label">Net Profit</span>
+            <span class="kpi-badge kpi-badge--up" aria-label="8.1% increase">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 2l4 4H7v4H5V6H2L6 2z"/></svg>
+              8.1%
+            </span>
+          </div>
+          <div class="kpi-card__value" aria-label="535 thousand dollars">$535K</div>
+          <div class="kpi-card__sub">24.9% net margin</div>
+          <div class="kpi-sparkline" aria-hidden="true">
+            <svg id="sparkline-profit" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </article>
+
+        <article class="kpi-card kpi-card--expenses" tabindex="0">
+          <div class="kpi-card__header">
+            <span class="kpi-label">Operating Expenses</span>
+            <span class="kpi-badge kpi-badge--down" aria-label="3.2% decrease">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 10L2 6h3V2h2v4h3L6 10z"/></svg>
+              3.2%
+            </span>
+          </div>
+          <div class="kpi-card__value" aria-label="1 million 605 thousand dollars">$1.61M</div>
+          <div class="kpi-card__sub">75.1% of revenue</div>
+          <div class="kpi-sparkline" aria-hidden="true">
+            <svg id="sparkline-expenses" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </article>
+
+        <article class="kpi-card kpi-card--cash" tabindex="0">
+          <div class="kpi-card__header">
+            <span class="kpi-label">Cash on Hand</span>
+            <span class="kpi-badge kpi-badge--neutral" aria-label="Stable">— Stable</span>
+          </div>
+          <div class="kpi-card__value" aria-label="3 million 247 thousand dollars">$3.25M</div>
+          <div class="kpi-card__sub">6.2 months runway</div>
+          <div class="kpi-sparkline" aria-hidden="true">
+            <svg id="sparkline-cash" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </article>
+
+        <article class="kpi-card kpi-card--ar" tabindex="0">
+          <div class="kpi-card__header">
+            <span class="kpi-label">Accounts Receivable</span>
+            <span class="kpi-badge kpi-badge--warn" aria-label="14.5% increase">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 2l4 4H7v4H5V6H2L6 2z"/></svg>
+              14.5%
+            </span>
+          </div>
+          <div class="kpi-card__value" aria-label="428 thousand dollars">$428K</div>
+          <div class="kpi-card__sub">Avg DSO: 34 days</div>
+          <div class="kpi-sparkline" aria-hidden="true">
+            <svg id="sparkline-ar" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </article>
+
+        <article class="kpi-card kpi-card--burn" tabindex="0">
+          <div class="kpi-card__header">
+            <span class="kpi-label">Monthly Burn Rate</span>
+            <span class="kpi-badge kpi-badge--down" aria-label="5.0% decrease">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 10L2 6h3V2h2v4h3L6 10z"/></svg>
+              5.0%
+            </span>
+          </div>
+          <div class="kpi-card__value" aria-label="524 thousand dollars">$524K</div>
+          <div class="kpi-card__sub">Target: &lt;$550K</div>
+          <div class="kpi-sparkline" aria-hidden="true">
+            <svg id="sparkline-burn" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ============ CHARTS ROW ============ -->
+      <div class="charts-grid">
+
+        <!-- Revenue vs Expenses Trend -->
+        <section class="chart-panel chart-panel--large" aria-labelledby="chart-trend-title">
+          <div class="chart-panel__header">
+            <div>
+              <h2 class="chart-title" id="chart-trend-title">Revenue vs Expenses</h2>
+              <p class="chart-subtitle">Monthly YTD performance</p>
+            </div>
+            <div class="chart-legend" aria-label="Chart legend">
+              <span class="legend-item"><span class="legend-dot legend-dot--revenue" aria-hidden="true"></span>Revenue</span>
+              <span class="legend-item"><span class="legend-dot legend-dot--expenses" aria-hidden="true"></span>Expenses</span>
+              <span class="legend-item"><span class="legend-dot legend-dot--profit" aria-hidden="true"></span>Net Profit</span>
+            </div>
+          </div>
+          <div class="chart-wrapper" role="img" aria-label="Line chart showing monthly revenue versus expenses for the year to date">
+            <svg id="chart-trend" viewBox="0 0 620 240" preserveAspectRatio="xMidYMid meet"></svg>
+          </div>
+        </section>
+
+        <!-- Service Revenue Breakdown -->
+        <section class="chart-panel" aria-labelledby="chart-donut-title">
+          <div class="chart-panel__header">
+            <div>
+              <h2 class="chart-title" id="chart-donut-title">Revenue by Service</h2>
+              <p class="chart-subtitle">YTD breakdown</p>
+            </div>
+          </div>
+          <div class="chart-wrapper chart-wrapper--donut" role="img" aria-label="Donut chart showing revenue breakdown by service line">
+            <svg id="chart-donut" viewBox="0 0 220 220" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="donut-legend" role="list" aria-label="Service line breakdown"></div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ============ BOTTOM ROW ============ -->
+      <div class="bottom-grid">
+
+        <!-- P&L Summary -->
+        <section class="panel" aria-labelledby="pnl-title">
+          <div class="panel__header">
+            <h2 class="panel-title" id="pnl-title">P&amp;L Summary</h2>
+            <span class="panel-period">Q1 + Apr 2026</span>
+          </div>
+          <table class="pnl-table" aria-label="Profit and loss summary">
+            <thead>
+              <tr>
+                <th scope="col">Line Item</th>
+                <th scope="col" class="text-right">Actual</th>
+                <th scope="col" class="text-right">Budget</th>
+                <th scope="col" class="text-right">Variance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pnl-section-header">
+                <td colspan="4">Revenue</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Strategy Consulting</td>
+                <td class="text-right">$963K</td>
+                <td class="text-right">$920K</td>
+                <td class="text-right positive">+$43K</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Technology Services</td>
+                <td class="text-right">$642K</td>
+                <td class="text-right">$610K</td>
+                <td class="text-right positive">+$32K</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Operations Advisory</td>
+                <td class="text-right">$321K</td>
+                <td class="text-right">$340K</td>
+                <td class="text-right negative">-$19K</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Finance &amp; Risk</td>
+                <td class="text-right">$214K</td>
+                <td class="text-right">$200K</td>
+                <td class="text-right positive">+$14K</td>
+              </tr>
+              <tr class="pnl-total">
+                <td>Total Revenue</td>
+                <td class="text-right">$2,140K</td>
+                <td class="text-right">$2,070K</td>
+                <td class="text-right positive">+$70K</td>
+              </tr>
+              <tr class="pnl-section-header">
+                <td colspan="4">Operating Expenses</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Personnel &amp; Benefits</td>
+                <td class="text-right">$1,050K</td>
+                <td class="text-right">$1,080K</td>
+                <td class="text-right positive">+$30K</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Technology &amp; Tools</td>
+                <td class="text-right">$215K</td>
+                <td class="text-right">$220K</td>
+                <td class="text-right positive">+$5K</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Office &amp; Admin</td>
+                <td class="text-right">$168K</td>
+                <td class="text-right">$160K</td>
+                <td class="text-right negative">-$8K</td>
+              </tr>
+              <tr>
+                <td class="pnl-indent">Sales &amp; Marketing</td>
+                <td class="text-right">$172K</td>
+                <td class="text-right">$180K</td>
+                <td class="text-right positive">+$8K</td>
+              </tr>
+              <tr class="pnl-total">
+                <td>Total OpEx</td>
+                <td class="text-right">$1,605K</td>
+                <td class="text-right">$1,640K</td>
+                <td class="text-right positive">+$35K</td>
+              </tr>
+              <tr class="pnl-net">
+                <td>Net Profit</td>
+                <td class="text-right">$535K</td>
+                <td class="text-right">$430K</td>
+                <td class="text-right positive">+$105K</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Top Clients + Recent Activity -->
+        <div class="side-panels">
+
+          <!-- Top Clients -->
+          <section class="panel" aria-labelledby="clients-title">
+            <div class="panel__header">
+              <h2 class="panel-title" id="clients-title">Top Clients</h2>
+              <span class="panel-period">By YTD Revenue</span>
+            </div>
+            <ol class="client-list" aria-label="Top clients by revenue">
+              <li class="client-item">
+                <div class="client-rank" aria-hidden="true">1</div>
+                <div class="client-info">
+                  <span class="client-name">Meridian Capital Group</span>
+                  <div class="client-bar-wrap" aria-hidden="true">
+                    <div class="client-bar" style="width: 100%"></div>
+                  </div>
+                </div>
+                <div class="client-revenue">$387K</div>
+              </li>
+              <li class="client-item">
+                <div class="client-rank" aria-hidden="true">2</div>
+                <div class="client-info">
+                  <span class="client-name">Vertax Healthcare</span>
+                  <div class="client-bar-wrap" aria-hidden="true">
+                    <div class="client-bar" style="width: 78%"></div>
+                  </div>
+                </div>
+                <div class="client-revenue">$302K</div>
+              </li>
+              <li class="client-item">
+                <div class="client-rank" aria-hidden="true">3</div>
+                <div class="client-info">
+                  <span class="client-name">Astra Logistics</span>
+                  <div class="client-bar-wrap" aria-hidden="true">
+                    <div class="client-bar" style="width: 62%"></div>
+                  </div>
+                </div>
+                <div class="client-revenue">$241K</div>
+              </li>
+              <li class="client-item">
+                <div class="client-rank" aria-hidden="true">4</div>
+                <div class="client-info">
+                  <span class="client-name">Nexus Financial</span>
+                  <div class="client-bar-wrap" aria-hidden="true">
+                    <div class="client-bar" style="width: 48%"></div>
+                  </div>
+                </div>
+                <div class="client-revenue">$186K</div>
+              </li>
+              <li class="client-item">
+                <div class="client-rank" aria-hidden="true">5</div>
+                <div class="client-info">
+                  <span class="client-name">BlueSky Retail Co.</span>
+                  <div class="client-bar-wrap" aria-hidden="true">
+                    <div class="client-bar" style="width: 38%"></div>
+                  </div>
+                </div>
+                <div class="client-revenue">$148K</div>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Recent Transactions -->
+          <section class="panel" aria-labelledby="transactions-title">
+            <div class="panel__header">
+              <h2 class="panel-title" id="transactions-title">Recent Transactions</h2>
+              <button class="text-btn">View all</button>
+            </div>
+            <ul class="transaction-list" aria-label="Recent financial transactions">
+              <li class="transaction-item">
+                <div class="transaction-icon transaction-icon--in" aria-label="Income">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2l4 4H9v6H7V6H4L8 2z"/></svg>
+                </div>
+                <div class="transaction-info">
+                  <span class="transaction-desc">Meridian Capital — Invoice #2026-041</span>
+                  <span class="transaction-date">Apr 7, 2026</span>
+                </div>
+                <span class="transaction-amount transaction-amount--in">+$96,500</span>
+              </li>
+              <li class="transaction-item">
+                <div class="transaction-icon transaction-icon--out" aria-label="Expense">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 14l4-4H9V4H7v6H4l4 4z"/></svg>
+                </div>
+                <div class="transaction-info">
+                  <span class="transaction-desc">AWS Cloud Infrastructure — Monthly</span>
+                  <span class="transaction-date">Apr 5, 2026</span>
+                </div>
+                <span class="transaction-amount transaction-amount--out">-$18,240</span>
+              </li>
+              <li class="transaction-item">
+                <div class="transaction-icon transaction-icon--in" aria-label="Income">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2l4 4H9v6H7V6H4L8 2z"/></svg>
+                </div>
+                <div class="transaction-info">
+                  <span class="transaction-desc">Vertax Healthcare — Invoice #2026-038</span>
+                  <span class="transaction-date">Apr 4, 2026</span>
+                </div>
+                <span class="transaction-amount transaction-amount--in">+$74,000</span>
+              </li>
+              <li class="transaction-item">
+                <div class="transaction-icon transaction-icon--out" aria-label="Expense">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 14l4-4H9V4H7v6H4l4 4z"/></svg>
+                </div>
+                <div class="transaction-info">
+                  <span class="transaction-desc">Payroll — April 1st cycle</span>
+                  <span class="transaction-date">Apr 1, 2026</span>
+                </div>
+                <span class="transaction-amount transaction-amount--out">-$342,000</span>
+              </li>
+              <li class="transaction-item">
+                <div class="transaction-icon transaction-icon--in" aria-label="Income">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2l4 4H9v6H7V6H4L8 2z"/></svg>
+                </div>
+                <div class="transaction-info">
+                  <span class="transaction-desc">Astra Logistics — Retainer Mar</span>
+                  <span class="transaction-date">Mar 31, 2026</span>
+                </div>
+                <span class="transaction-amount transaction-amount--in">+$55,000</span>
+              </li>
+            </ul>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- Budget vs Actual Bar Chart -->
+      <section class="chart-panel chart-panel--bar" aria-labelledby="chart-budget-title">
+        <div class="chart-panel__header">
+          <div>
+            <h2 class="chart-title" id="chart-budget-title">Budget vs Actual — Monthly</h2>
+            <p class="chart-subtitle">YTD monthly comparison with forecast</p>
+          </div>
+          <div class="chart-legend" aria-label="Chart legend">
+            <span class="legend-item"><span class="legend-dot legend-dot--budget" aria-hidden="true"></span>Budget</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--actual" aria-hidden="true"></span>Actual</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--forecast" aria-hidden="true"></span>Forecast</span>
+          </div>
+        </div>
+        <div class="chart-wrapper" role="img" aria-label="Bar chart comparing budget to actual revenue by month">
+          <svg id="chart-budget" viewBox="0 0 880 200" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Tooltip -->
+  <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
