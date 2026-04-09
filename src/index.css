@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: theme('colors.gray.50');
+    --color-surface: theme('colors.white');
+    --color-border: theme('colors.gray.100');
+    --color-text-primary: theme('colors.gray.900');
+    --color-text-secondary: theme('colors.gray.500');
+    --color-primary: theme('colors.blue.500');
+    --color-primary-subtle: theme('colors.blue.50');
+    --color-success: theme('colors.emerald.500');
+    --color-danger: theme('colors.red.500');
+    --color-warning: theme('colors.amber.500');
+  }
+
+  .dark {
+    --color-bg: #0a0f1a;
+    --color-surface: theme('colors.gray.900');
+    --color-border: theme('colors.gray.800');
+    --color-text-primary: theme('colors.gray.50');
+    --color-text-secondary: theme('colors.gray.400');
+    --color-primary: theme('colors.blue.400');
+    --color-primary-subtle: rgba(59, 130, 246, 0.1);
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-[#0a0f1a] text-gray-900 dark:text-gray-50;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+  }
+}
+
+@layer utilities {
+  .transition-theme {
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+}
