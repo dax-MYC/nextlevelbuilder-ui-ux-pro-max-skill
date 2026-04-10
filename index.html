@@ -109,10 +109,19 @@
           <span id="toast-msg">KPI submitted!</span>
         </div>
 
-        <!-- Submissions log -->
+        <!-- Department rollup summary -->
+        <section class="card" id="summary-section">
+          <h2 class="section-title">Department Summary</h2>
+          <p class="section-meta" id="summary-week-label"></p>
+          <div id="summary-list">
+            <p class="empty-state">No submissions yet.</p>
+          </div>
+        </section>
+
+        <!-- Individual submissions log -->
         <section class="card">
           <div class="log-header">
-            <h2 class="section-title">Submissions This Week</h2>
+            <h2 class="section-title">Individual Submissions</h2>
             <button id="clear-btn" class="btn-ghost">Clear all</button>
           </div>
           <div id="log-list">

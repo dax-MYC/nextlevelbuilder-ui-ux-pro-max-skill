@@ -16,11 +16,13 @@ const STAFF = [
 ];
 
 // KPIs organised by area (shown as grouped sections in the dropdown)
-// Each KPI: { id, label, target, unit }
-//   id     — unique key stored in submissions; don't change once in use
-//   label  — display name shown to staff
-//   target — weekly target number (shown as a hint chip beside the input)
-//   unit   — label shown with the number in the log (e.g. 'hrs', '%')
+// Each KPI: { id, label, target, deptTarget, unit }
+//   id         — unique key stored in submissions; don't change once in use
+//   label      — display name shown to staff
+//   target     — individual weekly target (shown as a chip beside the input)
+//   deptTarget — department/team weekly total target (used in rollup summary)
+//                Set to null if the department target isn't tracked separately
+//   unit       — label shown with numbers in the log (e.g. 'hrs', '%')
 // ⚠️  Replace placeholder entries with your actual KPIs and targets
 const KPI_DATA = {
   oap: {
@@ -28,11 +30,11 @@ const KPI_DATA = {
     short: 'OAP',
     kpis: [
       // --- ADD ACTUAL OAP KPIS HERE ---
-      { id: 'oap_kpi_1', label: 'OAP KPI 1 — replace me', target: 50,  unit: 'clients'  },
-      { id: 'oap_kpi_2', label: 'OAP KPI 2 — replace me', target: 100, unit: 'invoices' },
-      { id: 'oap_kpi_3', label: 'OAP KPI 3 — replace me', target: 20,  unit: 'reports'  },
-      { id: 'oap_kpi_4', label: 'OAP KPI 4 — replace me', target: 5,   unit: 'clients'  },
-      { id: 'oap_kpi_5', label: 'OAP KPI 5 — replace me', target: 40,  unit: 'hrs'      },
+      { id: 'oap_kpi_1', label: 'OAP KPI 1 — replace me', target: 50,  deptTarget: 200, unit: 'clients'  },
+      { id: 'oap_kpi_2', label: 'OAP KPI 2 — replace me', target: 100, deptTarget: 400, unit: 'invoices' },
+      { id: 'oap_kpi_3', label: 'OAP KPI 3 — replace me', target: 20,  deptTarget: 80,  unit: 'reports'  },
+      { id: 'oap_kpi_4', label: 'OAP KPI 4 — replace me', target: 5,   deptTarget: 20,  unit: 'clients'  },
+      { id: 'oap_kpi_5', label: 'OAP KPI 5 — replace me', target: 40,  deptTarget: 160, unit: 'hrs'      },
     ],
   },
   ss: {
@@ -40,11 +42,11 @@ const KPI_DATA = {
     short: 'SS',
     kpis: [
       // --- ADD ACTUAL SS KPIS HERE ---
-      { id: 'ss_kpi_1', label: 'SS KPI 1 — replace me', target: 25, unit: 'tickets'  },
-      { id: 'ss_kpi_2', label: 'SS KPI 2 — replace me', target: 4,  unit: 'features' },
-      { id: 'ss_kpi_3', label: 'SS KPI 3 — replace me', target: 10, unit: 'reviews'  },
-      { id: 'ss_kpi_4', label: 'SS KPI 4 — replace me', target: 15, unit: 'bugs'     },
-      { id: 'ss_kpi_5', label: 'SS KPI 5 — replace me', target: 40, unit: 'hrs'      },
+      { id: 'ss_kpi_1', label: 'SS KPI 1 — replace me', target: 25, deptTarget: 100, unit: 'tickets'  },
+      { id: 'ss_kpi_2', label: 'SS KPI 2 — replace me', target: 4,  deptTarget: 16,  unit: 'features' },
+      { id: 'ss_kpi_3', label: 'SS KPI 3 — replace me', target: 10, deptTarget: 40,  unit: 'reviews'  },
+      { id: 'ss_kpi_4', label: 'SS KPI 4 — replace me', target: 15, deptTarget: 60,  unit: 'bugs'     },
+      { id: 'ss_kpi_5', label: 'SS KPI 5 — replace me', target: 40, deptTarget: 160, unit: 'hrs'      },
     ],
   },
 };
@@ -247,10 +249,12 @@ function enterFormScreen(name) {
     if (confirm('Clear all submissions for this week?')) {
       saveSubmissions(loadSubmissions().filter(s => s.weekKey !== getWeekKey()));
       renderLog();
+      renderSummary();
     }
   };
 
   renderLog();
+  renderSummary();
   showScreen('screen-form');
 }
 
@@ -312,6 +316,7 @@ function handleSubmit(e, name) {
 
   showToast(`Submitted — ${kpi ? kpi.label : kpiId}`);
   renderLog();
+  renderSummary();
 }
 
 function targetChip_reset() {
@@ -319,6 +324,70 @@ function targetChip_reset() {
   chip.textContent = '';
   chip.classList.add('hidden');
   document.getElementById('kpi-actual').placeholder = 'Enter value';
+}
+
+// ── Department rollup summary ──────────────────────────────────────
+
+function renderSummary() {
+  const container = document.getElementById('summary-list');
+  const weekKey   = getWeekKey();
+  const entries   = loadSubmissions().filter(s => s.weekKey === weekKey);
+
+  document.getElementById('summary-week-label').textContent = getWeekRange();
+
+  if (entries.length === 0) {
+    container.innerHTML = '<p class="empty-state">No submissions yet.</p>';
+    return;
+  }
+
+  // Aggregate: { [kpiId]: { total, contributors: Set<name> } }
+  const agg = {};
+  entries.forEach(s => {
+    if (!agg[s.kpi]) agg[s.kpi] = { total: 0, contributors: new Set() };
+    agg[s.kpi].total += Number(s.actual);
+    agg[s.kpi].contributors.add(s.name);
+  });
+
+  // Build output grouped by area
+  let html = '';
+  for (const [, group] of Object.entries(KPI_DATA)) {
+    const activeKpis = group.kpis.filter(k => agg[k.id]);
+    if (activeKpis.length === 0) continue;
+
+    html += `<div class="summary-group">
+      <div class="summary-group-label">${esc(group.label)}</div>`;
+
+    activeKpis.forEach(kpi => {
+      const { total, contributors } = agg[kpi.id];
+      const hasDeptTarget = kpi.deptTarget != null;
+      const pct     = hasDeptTarget ? Math.min(100, Math.round((total / kpi.deptTarget) * 100)) : null;
+      const unitStr = kpi.unit ? ` ${kpi.unit}` : '';
+      const onTrack = hasDeptTarget && total >= kpi.deptTarget;
+      const count   = contributors.size;
+
+      html += `
+        <div class="summary-row">
+          <div class="summary-body">
+            <div class="summary-kpi-label">${esc(kpi.label)}</div>
+            <div class="summary-meta">
+              ${count} contributor${count !== 1 ? 's' : ''}
+              ${hasDeptTarget
+                ? ` &middot; <strong>${total}</strong> / ${kpi.deptTarget}${esc(unitStr)}`
+                : ` &middot; <strong>${total}${esc(unitStr)}</strong>`}
+            </div>
+            ${hasDeptTarget ? `
+            <div class="progress-bar">
+              <div class="progress-fill${onTrack ? ' complete' : ''}" style="width:${pct}%"></div>
+            </div>` : ''}
+          </div>
+          <div class="summary-pct ${onTrack ? 'on-target' : ''}">${hasDeptTarget ? pct + '%' : '&mdash;'}</div>
+        </div>`;
+    });
+
+    html += '</div>';
+  }
+
+  container.innerHTML = html || '<p class="empty-state">No submissions yet.</p>';
 }
 
 // ── Log rendering ──────────────────────────────────────────────────
