@@ -11,114 +11,137 @@
 </head>
 <body>
   <div class="app">
+
+    <!-- ── Persistent header ──────────────────────────────────── -->
     <header class="header">
       <div class="header-inner">
         <div class="logo-mark"></div>
-        <div>
+        <div class="header-text">
           <h1 class="brand">MyConsult</h1>
           <p class="brand-sub">Weekly KPI Tracker</p>
+        </div>
+        <!-- Shown only on the form screen -->
+        <div id="user-pill" class="user-pill hidden">
+          <span id="user-pill-avatar" class="user-pill-avatar"></span>
+          <div class="user-pill-info">
+            <span id="user-pill-name" class="user-pill-name"></span>
+            <span id="user-pill-dept" class="user-pill-dept"></span>
+          </div>
+          <button id="change-user-btn" class="change-user-btn" aria-label="Change user">&times;</button>
         </div>
       </div>
     </header>
 
-    <main class="main">
-      <!-- Submission Form -->
-      <section class="card" id="form-section">
-        <h2 class="section-title">Submit This Week's Actuals</h2>
-        <p class="section-meta" id="week-label"></p>
+    <!-- ══════════════════════════════════════════════════════════
+         Screen 1 — Staff selection
+    ══════════════════════════════════════════════════════════ -->
+    <div id="screen-select" class="screen">
+      <main class="main select-main">
+        <div class="card">
+          <h2 class="section-title">Who are you?</h2>
+          <p class="section-meta" id="welcome-week"></p>
 
-        <form id="kpi-form" novalidate>
           <div class="field">
-            <label class="label" for="staff-name">Your Name</label>
+            <span class="label">Department</span>
+            <div class="dept-btns">
+              <button type="button" class="dept-btn" data-dept="oap">
+                <span class="dept-icon">&#128196;</span>
+                <span>Outsource Accounting<br>&amp; Payroll</span>
+              </button>
+              <button type="button" class="dept-btn" data-dept="ss">
+                <span class="dept-icon">&#128187;</span>
+                <span>Software<br>Solutions</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field hidden" id="name-field">
+            <label class="label" for="select-name">Your Name</label>
             <div class="select-wrap">
-              <select id="staff-name" required>
+              <select id="select-name">
                 <option value="" disabled selected>Select your name</option>
-                <option>Alex Carter</option>
-                <option>Brooke Nguyen</option>
-                <option>Cameron Lee</option>
-                <option>Dana Patel</option>
-                <option>Elliott Walsh</option>
-                <option>Fiona Marsh</option>
-                <option>George Kim</option>
-                <option>Hannah Torres</option>
-                <option>Isaac Brown</option>
-                <option>Jade Osei</option>
               </select>
             </div>
           </div>
 
-          <div class="field">
-            <label class="label" for="kpi-name">KPI</label>
-            <div class="select-wrap">
-              <select id="kpi-name" required>
-                <option value="" disabled selected>Select a KPI</option>
-                <optgroup label="Revenue">
-                  <option value="billable_hours">Billable Hours</option>
-                  <option value="revenue_collected">Revenue Collected ($)</option>
-                  <option value="proposals_sent">Proposals Sent</option>
-                </optgroup>
-                <optgroup label="Clients">
-                  <option value="new_clients">New Clients Acquired</option>
-                  <option value="client_satisfaction">Client Satisfaction Score (1–10)</option>
-                  <option value="client_meetings">Client Meetings Held</option>
-                </optgroup>
-                <optgroup label="Projects">
-                  <option value="projects_completed">Projects Completed</option>
-                  <option value="on_time_delivery">On-Time Delivery (%)</option>
-                  <option value="tasks_closed">Tasks Closed</option>
-                </optgroup>
-                <optgroup label="Team">
-                  <option value="training_hours">Training Hours</option>
-                  <option value="team_nps">Team NPS</option>
-                </optgroup>
-              </select>
+          <div id="select-error" class="form-error hidden"></div>
+
+          <button type="button" id="continue-btn" class="btn-primary hidden">
+            Let&rsquo;s go &rarr;
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         Screen 2 — KPI form & submission log
+    ══════════════════════════════════════════════════════════ -->
+    <div id="screen-form" class="screen hidden">
+      <main class="main">
+
+        <section class="card">
+          <h2 class="section-title">Submit This Week&rsquo;s Actuals</h2>
+          <p class="section-meta" id="week-label"></p>
+
+          <form id="kpi-form" novalidate>
+
+            <div class="field">
+              <label class="label" for="kpi-name">KPI</label>
+              <div class="select-wrap">
+                <select id="kpi-name" required>
+                  <option value="" disabled selected>Select a KPI</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label" for="kpi-target">Target <span class="optional">(optional)</span></label>
-            <input type="number" id="kpi-target" class="input" placeholder="e.g. 40" min="0" step="any" />
-          </div>
+            <div class="field">
+              <div class="label-row">
+                <label class="label" for="kpi-actual">Actual Value</label>
+                <span id="target-chip" class="target-chip hidden"></span>
+              </div>
+              <input type="number" id="kpi-actual" class="input"
+                     placeholder="Enter value" min="0" step="any" required />
+            </div>
 
-          <div class="field">
-            <label class="label" for="kpi-actual">Actual Value</label>
-            <input type="number" id="kpi-actual" class="input" placeholder="e.g. 38" min="0" step="any" required />
-          </div>
+            <div class="field">
+              <label class="label" for="kpi-notes">
+                Notes <span class="optional">(optional)</span>
+              </label>
+              <textarea id="kpi-notes" class="input textarea"
+                        placeholder="Any context or blockers…" rows="3"></textarea>
+            </div>
 
-          <div class="field">
-            <label class="label" for="kpi-notes">Notes <span class="optional">(optional)</span></label>
-            <textarea id="kpi-notes" class="input textarea" placeholder="Any context or blockers…" rows="3"></textarea>
-          </div>
+            <div id="form-error" class="form-error hidden"></div>
 
-          <div id="form-error" class="form-error hidden"></div>
+            <button type="submit" class="btn-primary">Submit KPI</button>
+          </form>
+        </section>
 
-          <button type="submit" class="btn-primary">Submit KPI</button>
-        </form>
-      </section>
-
-      <!-- Success Toast -->
-      <div id="toast" class="toast hidden">
-        <span class="toast-icon">&#10003;</span>
-        <span id="toast-msg">KPI submitted!</span>
-      </div>
-
-      <!-- Submissions Log -->
-      <section class="card" id="log-section">
-        <div class="log-header">
-          <h2 class="section-title">Submissions This Week</h2>
-          <button id="clear-btn" class="btn-ghost">Clear all</button>
+        <!-- Toast notification -->
+        <div id="toast" class="toast hidden">
+          <span class="toast-icon">&#10003;</span>
+          <span id="toast-msg">KPI submitted!</span>
         </div>
-        <div id="log-list">
-          <p class="empty-state">No submissions yet.</p>
-        </div>
-      </section>
-    </main>
+
+        <!-- Submissions log -->
+        <section class="card">
+          <div class="log-header">
+            <h2 class="section-title">Submissions This Week</h2>
+            <button id="clear-btn" class="btn-ghost">Clear all</button>
+          </div>
+          <div id="log-list">
+            <p class="empty-state">No submissions yet.</p>
+          </div>
+        </section>
+
+      </main>
+    </div>
 
     <footer class="footer">
       &copy; <span id="year"></span> MyConsult &mdash; Data stored locally on this device.
     </footer>
-  </div>
 
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
