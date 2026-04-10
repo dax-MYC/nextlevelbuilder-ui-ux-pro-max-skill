@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Option 2 — Dark Executive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ── OPTION 2: DARK EXECUTIVE ────────────────────────────────
+   Deep navy background, glass-effect cards, pink CTAs,
+   glowing progress bars, premium boardroom feel.
+──────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#091824;
+  --surface:#0f2336;
+  --surface-2:#142c42;
+  --border:#1e3d5c;
+  --border-light:#254d70;
+  --text:#e2edf8;
+  --text-muted:#5f8aaa;
+  --navy:#2a7abf;
+  --pink:#e86f82;
+  --sky:#82b9d5;
+  --pink-dk:#c85970;
+  --green:#4ec44e;
+}
+html{font-size:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* header */
+.header{background:#071220;padding:17px 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border)}
+.header-inner{max-width:620px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--sky),var(--pink));flex-shrink:0}
+.header-text{flex:1}
+.brand{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.brand-sub{font-size:.65rem;font-weight:600;color:var(--sky);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
+.user-pill{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border-light);border-radius:40px;padding:5px 12px 5px 5px;flex-shrink:0}
+.user-pill-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--pink),#8b1a2f);color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.user-pill-name{font-size:.73rem;font-weight:700;color:var(--text)}
+.user-pill-sub{font-size:.6rem;color:var(--text-muted);font-weight:500}
+
+/* layout */
+.main{max-width:620px;margin:0 auto;padding:24px 16px 60px;display:flex;flex-direction:column;gap:16px}
+
+/* cards */
+.card{background:var(--surface);border-radius:16px;padding:22px 20px;border:1px solid var(--border)}
+
+/* section title */
+.section-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);margin-bottom:18px}
+
+/* form */
+.field{margin-bottom:15px}
+.label{display:block;font-size:.75rem;font-weight:600;color:var(--sky);margin-bottom:6px;letter-spacing:.2px}
+.label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.label-row .label{margin-bottom:0}
+.optional{font-weight:400;color:var(--text-muted)}
+.input{width:100%;padding:11px 13px;border:1px solid var(--border-light);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);background:#0a1e2e;outline:none;appearance:none}
+.input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(130,185,213,.12)}
+.select-wrap{position:relative}
+.select-wrap select{width:100%;padding:11px 36px 11px 13px;border:1px solid var(--border-light);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);background:#0a1e2e;appearance:none;cursor:pointer;outline:none}
+.select-wrap::after{content:'';position:absolute;right:13px;top:50%;transform:translateY(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--sky);pointer-events:none}
+.target-chip{font-size:.7rem;font-weight:700;color:var(--sky);background:rgba(130,185,213,.12);border:1px solid var(--sky);border-radius:20px;padding:3px 10px;flex-shrink:0}
+.textarea{resize:vertical;min-height:68px}
+
+/* PINK button */
+.btn-primary{width:100%;padding:14px;background:var(--pink);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-top:6px}
+.btn-ghost{background:none;border:1px solid var(--border-light);border-radius:8px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:600;color:var(--text-muted);cursor:pointer}
+
+/* summary rows */
+.summary-group{margin-bottom:20px}
+.summary-group:last-child{margin-bottom:0}
+.area-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.summary-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.summary-row:last-child{border-bottom:none}
+.summary-body{flex:1;min-width:0}
+.summary-kpi{font-size:.8rem;font-weight:600;color:var(--text)}
+.summary-meta{font-size:.72rem;color:var(--text-muted);margin-top:2px}
+.summary-meta strong{color:var(--sky);font-weight:700}
+
+/* GLOWING progress bar — key differentiator */
+.progress-bar{height:5px;background:var(--border);border-radius:10px;margin-top:7px;overflow:hidden}
+.progress-fill{height:100%;border-radius:10px;background:var(--sky);box-shadow:0 0 8px rgba(130,185,213,.6)}
+.progress-fill.done{background:var(--green);box-shadow:0 0 8px rgba(78,196,78,.6)}
+.summary-pct{font-size:.8rem;font-weight:700;color:var(--text-muted);flex-shrink:0;min-width:34px;text-align:right}
+.summary-pct.done{color:var(--green)}
+
+/* log */
+.log-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.log-header .section-title{margin-bottom:0}
+.log-item{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.log-item:last-child{border-bottom:none}
+.log-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--sky),#1a4d6e);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.log-body{flex:1;min-width:0}
+.log-name{font-size:.8rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:5px}
+.log-tag{font-size:.6rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted);background:var(--surface-2);border:1px solid var(--border-light);border-radius:4px;padding:1px 5px}
+.log-kpi{font-size:.77rem;font-weight:500;color:var(--text-muted);margin-top:2px}
+.log-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.log-badge{border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;white-space:nowrap;border:1px solid}
+.log-badge.on{border-color:var(--green);color:var(--green);background:rgba(78,196,78,.08)}
+.log-badge.off{border-color:var(--pink);color:var(--pink);background:rgba(232,111,130,.08)}
+.log-badge.neutral{border-color:var(--border-light);color:var(--sky);background:rgba(130,185,213,.06)}
+.log-time{font-size:.68rem;color:var(--text-muted);font-weight:500}
+
+.design-label{background:linear-gradient(135deg,#071220,#0f2336);color:#e2edf8;text-align:center;padding:12px;font-size:.8rem;font-weight:700;letter-spacing:.5px;border-bottom:1px solid #1e3d5c}
+.design-desc{text-align:center;padding:8px 16px;font-size:.72rem;color:#5f8aaa;font-weight:500;background:#0f2336;border-bottom:1px solid #1e3d5c}
+</style>
+</head>
+<body>
+
+<div class="design-label">OPTION 2 — DARK EXECUTIVE</div>
+<div class="design-desc">Deep navy background · Glass-effect cards · Pink CTAs · Glowing progress bars · Premium boardroom feel</div>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-mark"></div>
+    <div class="header-text">
+      <div class="brand">MyConsult</div>
+      <div class="brand-sub">Weekly KPI Tracker</div>
+    </div>
+    <div class="user-pill">
+      <div class="user-pill-avatar">DC</div>
+      <div>
+        <div class="user-pill-name">Dax Chew</div>
+        <div class="user-pill-sub">MyConsult Staff</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="section-title">Submit This Week's Actuals</div>
+
+    <div class="field">
+      <label class="label">KPI</label>
+      <div class="select-wrap">
+        <select><option>Billable Hours</option></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="label-row">
+        <label class="label">Actual Value</label>
+        <span class="target-chip">Target: 40 hrs</span>
+      </div>
+      <input class="input" type="number" value="36" placeholder="Enter hrs" />
+    </div>
+
+    <div class="field">
+      <label class="label">Notes <span class="optional">(optional)</span></label>
+      <textarea class="input textarea" placeholder="Any context or blockers…"></textarea>
+    </div>
+
+    <button class="btn-primary">Submit KPI</button>
+  </div>
+
+  <!-- DEPARTMENT SUMMARY -->
+  <div class="card">
+    <div class="section-title">Department Summary</div>
+
+    <div class="summary-group">
+      <div class="area-label">Outsource Accounting &amp; Payroll</div>
+      <div class="summary-row">
+        <div class="summary-body">
+          <div class="summary-kpi">Billable Hours</div>
+          <div class="summary-meta">3 contributors · <strong>87</strong> / 160 hrs</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:54%"></div></div>
+        </div>
+        <div class="summary-pct">54%</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-body">
+          <div class="summary-kpi">Client Reports</div>
+          <div class="summary-meta">2 contributors · <strong>22</strong> / 20 reports</div>
+          <div class="progress-bar"><div class="progress-fill done" style="width:100%"></div></div>
+        </div>
+        <div class="summary-pct done">100%</div>
+      </div>
+    </div>
+
+    <div class="summary-group">
+      <div class="area-label">Software Solutions</div>
+      <div class="summary-row">
+        <div class="summary-body">
+          <div class="summary-kpi">Tickets Resolved</div>
+          <div class="summary-meta">2 contributors · <strong>38</strong> / 100 tickets</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:38%"></div></div>
+        </div>
+        <div class="summary-pct">38%</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-body">
+          <div class="summary-kpi">Bugs Fixed</div>
+          <div class="summary-meta">2 contributors · <strong>24</strong> / 60 bugs</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+        </div>
+        <div class="summary-pct">40%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="card">
+    <div class="log-header">
+      <div class="section-title">Individual Submissions</div>
+      <button class="btn-ghost">Clear all</button>
+    </div>
+
+    <div class="log-item">
+      <div class="log-avatar">DC</div>
+      <div class="log-body">
+        <div class="log-name">Dax Chew <span class="log-tag">OAP</span></div>
+        <div class="log-kpi">Billable Hours</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge on">36 / 40 hrs</span>
+        <span class="log-time">9:14 am</span>
+      </div>
+    </div>
+
+    <div class="log-item">
+      <div class="log-avatar" style="background:linear-gradient(135deg,#e86f82,#8b1a2f)">MG</div>
+      <div class="log-body">
+        <div class="log-name">Meggy <span class="log-tag">SS</span></div>
+        <div class="log-kpi">Support Tickets Resolved</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge off">18 / 25 tickets</span>
+        <span class="log-time">8:52 am</span>
+      </div>
+    </div>
+
+    <div class="log-item">
+      <div class="log-avatar" style="background:linear-gradient(135deg,#82b9d5,#1a4d6e)">SC</div>
+      <div class="log-body">
+        <div class="log-name">Siao Chze <span class="log-tag">OAP</span></div>
+        <div class="log-kpi">Billable Hours</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge on">42 / 40 hrs</span>
+        <span class="log-time">8:30 am</span>
+      </div>
+    </div>
+
+    <div class="log-item">
+      <div class="log-avatar" style="background:linear-gradient(135deg,#e86f82,#1a4d6e)">AL</div>
+      <div class="log-body">
+        <div class="log-name">Aliff <span class="log-tag">SS</span></div>
+        <div class="log-kpi">Bugs Fixed</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge neutral">12 bugs</span>
+        <span class="log-time">8:15 am</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

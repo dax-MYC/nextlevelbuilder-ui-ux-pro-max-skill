@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Option 1 — Clean Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ── OPTION 1: CLEAN PRO ─────────────────────────────────────
+   Airy white space, pink CTA button, section titles with
+   left accent bars, department summary as metric cards.
+──────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#13598c;--pink:#e86f82;--sky:#82b9d5;
+  --navy-dk:#0e4570;--pink-dk:#c85970;
+  --bg:#eef3f9;--surface:#fff;--border:#dce6f0;
+  --text:#182536;--muted:#6b8299;
+  --shadow:0 2px 20px rgba(19,89,140,.07);
+}
+html{font-size:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* header */
+.header{background:var(--navy);padding:17px 20px;position:sticky;top:0;z-index:10;box-shadow:0 2px 14px rgba(19,89,140,.3)}
+.header-inner{max-width:620px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--sky),var(--pink));flex-shrink:0}
+.header-text{flex:1}
+.brand{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.brand-sub{font-size:.65rem;font-weight:600;color:var(--sky);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
+.user-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.13);border-radius:40px;padding:5px 10px 5px 5px;flex-shrink:0}
+.user-pill-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--navy-dk));color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.user-pill-name{font-size:.73rem;font-weight:700;color:#fff}
+.user-pill-sub{font-size:.6rem;color:var(--sky);font-weight:500}
+
+/* layout */
+.main{max-width:620px;margin:0 auto;padding:28px 16px 60px;display:flex;flex-direction:column;gap:18px}
+
+/* cards */
+.card{background:var(--surface);border-radius:20px;padding:24px 22px;box-shadow:var(--shadow);border:1px solid var(--border)}
+
+/* section title with left bar */
+.section-title{display:flex;align-items:center;gap:10px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);margin-bottom:18px}
+.section-title::before{content:'';display:block;width:3px;height:14px;border-radius:3px;background:var(--pink);flex-shrink:0}
+
+/* form */
+.field{margin-bottom:16px}
+.label{display:block;font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:.1px}
+.label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.label-row .label{margin-bottom:0}
+.optional{font-weight:400;color:var(--muted)}
+.input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);background:#fff;outline:none;appearance:none}
+.input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(130,185,213,.2)}
+.select-wrap{position:relative}
+.select-wrap select{width:100%;padding:11px 36px 11px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);background:#fff;appearance:none;cursor:pointer;outline:none}
+.select-wrap::after{content:'';position:absolute;right:13px;top:50%;transform:translateY(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--navy);pointer-events:none}
+.target-chip{font-size:.7rem;font-weight:700;color:#fff;background:var(--navy);border-radius:20px;padding:3px 10px;flex-shrink:0}
+.textarea{resize:vertical;min-height:68px}
+
+/* PINK gradient CTA button — key differentiator */
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,#e86f82,#c85970);color:#fff;border:none;border-radius:11px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-top:6px;box-shadow:0 4px 16px rgba(232,111,130,.35)}
+.btn-ghost{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer}
+
+/* METRIC CARD GRID for summary — key differentiator */
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.metric-card{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:14px 14px 12px}
+.metric-card-label{font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric-card-value{font-size:1.35rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:2px}
+.metric-card-target{font-size:.68rem;font-weight:500;color:var(--muted)}
+.metric-progress{height:5px;background:#dce6f0;border-radius:10px;margin-top:8px;overflow:hidden}
+.metric-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--sky),#5aa8cc)}
+.metric-fill.done{background:linear-gradient(90deg,#72c472,#4aaa4a)}
+.metric-card.done .metric-card-value{color:#2a7a2a}
+
+/* group label above metric grid */
+.area-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:8px;margin-top:14px}
+.area-label:first-child{margin-top:0}
+
+/* LOG — left accent border by area */
+.log-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.log-header .section-title{margin-bottom:0}
+.log-item{display:flex;align-items:flex-start;gap:11px;padding:12px 0 12px 12px;border-bottom:1px solid var(--border);position:relative}
+.log-item::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px}
+.log-item.oap::before{background:var(--sky)}
+.log-item.ss::before{background:var(--pink)}
+.log-item:last-child{border-bottom:none}
+.log-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--sky),var(--navy));color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.log-body{flex:1;min-width:0}
+.log-name{font-size:.8rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:5px}
+.log-tag{font-size:.6rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 5px}
+.log-kpi{font-size:.78rem;font-weight:500;color:var(--text);margin-top:2px}
+.log-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.log-badge{border-radius:20px;padding:3px 10px;font-size:.76rem;font-weight:700;white-space:nowrap;border:1.5px solid}
+.log-badge.on{border-color:#72c472;color:#2a7a2a;background:#f0faf0}
+.log-badge.off{border-color:var(--pink);color:var(--pink-dk);background:#fff0f3}
+.log-badge.neutral{border-color:var(--border);color:var(--navy);background:var(--bg)}
+.log-time{font-size:.68rem;color:var(--muted);font-weight:500}
+
+/* design label banner */
+.design-label{background:linear-gradient(135deg,var(--navy),#1a6fa8);color:#fff;text-align:center;padding:12px;font-size:.8rem;font-weight:700;letter-spacing:.5px}
+.design-desc{text-align:center;padding:8px 16px;font-size:.72rem;color:var(--muted);font-weight:500;background:var(--surface);border-bottom:1px solid var(--border)}
+
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="design-label">OPTION 1 — CLEAN PRO</div>
+<div class="design-desc">Airy white space · Pink CTA button · Section titles with left accent bars · Summary as metric cards</div>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-mark"></div>
+    <div class="header-text">
+      <div class="brand">MyConsult</div>
+      <div class="brand-sub">Weekly KPI Tracker</div>
+    </div>
+    <div class="user-pill">
+      <div class="user-pill-avatar">DC</div>
+      <div>
+        <div class="user-pill-name">Dax Chew</div>
+        <div class="user-pill-sub">MyConsult Staff</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="section-title">Submit This Week's Actuals</div>
+
+    <div class="field">
+      <label class="label">KPI</label>
+      <div class="select-wrap">
+        <select><option>Billable Hours</option></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="label-row">
+        <label class="label">Actual Value</label>
+        <span class="target-chip">Target: 40 hrs</span>
+      </div>
+      <input class="input" type="number" placeholder="Enter hrs" value="36" />
+    </div>
+
+    <div class="field">
+      <label class="label">Notes <span class="optional">(optional)</span></label>
+      <textarea class="input textarea" placeholder="Any context or blockers…"></textarea>
+    </div>
+
+    <button class="btn-primary">Submit KPI</button>
+  </div>
+
+  <!-- DEPARTMENT SUMMARY -->
+  <div class="card">
+    <div class="section-title">Department Summary</div>
+
+    <div class="area-label">Outsource Accounting &amp; Payroll</div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-card-label">Billable Hours</div>
+        <div class="metric-card-value">87</div>
+        <div class="metric-card-target">/ 160 hrs · 3 people</div>
+        <div class="metric-progress"><div class="metric-fill" style="width:54%"></div></div>
+      </div>
+      <div class="metric-card done">
+        <div class="metric-card-label">Client Reports</div>
+        <div class="metric-card-value">22</div>
+        <div class="metric-card-target">/ 20 reports · 2 people</div>
+        <div class="metric-progress"><div class="metric-fill done" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <div class="area-label">Software Solutions</div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-card-label">Tickets Resolved</div>
+        <div class="metric-card-value">38</div>
+        <div class="metric-card-target">/ 100 tickets · 2 people</div>
+        <div class="metric-progress"><div class="metric-fill" style="width:38%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-label">Bugs Fixed</div>
+        <div class="metric-card-value">24</div>
+        <div class="metric-card-target">/ 60 bugs · 2 people</div>
+        <div class="metric-progress"><div class="metric-fill" style="width:40%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="card">
+    <div class="log-header">
+      <div class="section-title">Individual Submissions</div>
+      <button class="btn-ghost">Clear all</button>
+    </div>
+
+    <div class="log-item oap">
+      <div class="log-avatar">DC</div>
+      <div class="log-body">
+        <div class="log-name">Dax Chew <span class="log-tag">OAP</span></div>
+        <div class="log-kpi">Billable Hours</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge on">36 / 40 hrs</span>
+        <span class="log-time">9:14 am</span>
+      </div>
+    </div>
+
+    <div class="log-item ss">
+      <div class="log-avatar" style="background:linear-gradient(135deg,#e86f82,#13598c)">MG</div>
+      <div class="log-body">
+        <div class="log-name">Meggy <span class="log-tag">SS</span></div>
+        <div class="log-kpi">Support Tickets Resolved</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge off">18 / 25 tickets</span>
+        <span class="log-time">8:52 am</span>
+      </div>
+    </div>
+
+    <div class="log-item oap">
+      <div class="log-avatar" style="background:linear-gradient(135deg,#82b9d5,#0e4570)">SC</div>
+      <div class="log-body">
+        <div class="log-name">Siao Chze <span class="log-tag">OAP</span></div>
+        <div class="log-kpi">Billable Hours</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge on">42 / 40 hrs</span>
+        <span class="log-time">8:30 am</span>
+      </div>
+    </div>
+
+    <div class="log-item ss">
+      <div class="log-avatar" style="background:linear-gradient(135deg,#e86f82,#0e4570)">AL</div>
+      <div class="log-body">
+        <div class="log-name">Aliff <span class="log-tag">SS</span></div>
+        <div class="log-kpi">Bugs Fixed</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge neutral">12 bugs</span>
+        <span class="log-time">8:15 am</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

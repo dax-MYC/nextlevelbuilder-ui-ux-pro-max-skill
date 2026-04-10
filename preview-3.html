@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Option 3 — Bold Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ── OPTION 3: BOLD DASHBOARD ────────────────────────────────
+   Pure white, cards with bold colour-strip tops, KPI numbers
+   displayed large and prominently, data-first dashboard feel.
+──────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#13598c;--pink:#e86f82;--sky:#82b9d5;
+  --navy-dk:#0e4570;--pink-dk:#c85970;
+  --bg:#f7f9fc;--surface:#fff;--border:#e4eaf2;
+  --text:#16243a;--muted:#7a90a8;
+  --green:#3ab03a;--green-bg:#f0faf0;
+  --red-bg:#fff0f3;
+}
+html{font-size:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* header — white with navy bottom line */
+.header{background:#fff;padding:15px 20px;position:sticky;top:0;z-index:10;border-bottom:3px solid var(--navy)}
+.header-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.logo-mark{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--sky),var(--pink));flex-shrink:0}
+.header-text{flex:1}
+.brand{font-size:1.1rem;font-weight:800;color:var(--navy);letter-spacing:.3px}
+.brand-sub{font-size:.65rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
+.user-pill{display:flex;align-items:center;gap:7px;background:var(--bg);border:1.5px solid var(--border);border-radius:40px;padding:5px 12px 5px 5px;flex-shrink:0}
+.user-pill-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--sky),var(--navy));color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.user-pill-name{font-size:.73rem;font-weight:700;color:var(--navy)}
+.user-pill-sub{font-size:.6rem;color:var(--muted);font-weight:500}
+
+/* layout */
+.main{max-width:640px;margin:0 auto;padding:24px 16px 60px;display:flex;flex-direction:column;gap:16px}
+
+/* BASE CARD */
+.card{background:var(--surface);border-radius:14px;border:1.5px solid var(--border);overflow:hidden}
+.card-body{padding:22px 20px}
+
+/* BOLD COLOUR-STRIP TOPS — key differentiator */
+.card-strip{height:5px}
+.strip-navy{background:var(--navy)}
+.strip-gradient{background:linear-gradient(90deg,var(--navy),var(--pink))}
+.strip-sky{background:var(--sky)}
+
+/* section title — bold, no caps */
+.section-title{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.section-sub{font-size:.75rem;font-weight:500;color:var(--muted);margin-bottom:20px}
+
+/* form */
+.field{margin-bottom:15px}
+.label{display:block;font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:5px}
+.label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.label-row .label{margin-bottom:0}
+.optional{font-weight:400;color:var(--muted)}
+.input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.9rem;color:var(--text);background:#fff;outline:none;appearance:none;font-weight:500}
+.input:focus{border-color:var(--navy)}
+.select-wrap{position:relative}
+.select-wrap select{width:100%;padding:12px 36px 12px 14px;border:2px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.9rem;color:var(--text);background:#fff;appearance:none;cursor:pointer;outline:none;font-weight:500}
+.select-wrap::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--navy);pointer-events:none}
+.target-chip{font-size:.7rem;font-weight:700;color:var(--navy);background:#eaf2f9;border:1.5px solid var(--sky);border-radius:6px;padding:3px 10px;flex-shrink:0;letter-spacing:.2px}
+.textarea{resize:vertical;min-height:68px}
+
+/* NAVY button — solid, no gradient */
+.btn-primary{width:100%;padding:15px;background:var(--navy);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;letter-spacing:.4px;margin-top:6px}
+.btn-ghost{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer}
+
+/* BIG STAT NUMBERS in summary — key differentiator */
+.stat-area-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat-grid:last-child{margin-bottom:0}
+.stat-card{border:1.5px solid var(--border);border-radius:12px;padding:14px}
+.stat-number{font-size:2rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:2px}
+.stat-target{font-size:.7rem;font-weight:500;color:var(--muted);margin-bottom:6px}
+.stat-label{font-size:.7rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat-contrib{font-size:.65rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+.progress-bar{height:6px;background:var(--border);border-radius:10px;overflow:hidden}
+.progress-fill{height:100%;border-radius:10px;background:var(--sky)}
+.progress-fill.done{background:var(--green)}
+.stat-card.done .stat-number{color:var(--green)}
+.stat-pct{font-size:.7rem;font-weight:700;color:var(--muted);margin-top:4px}
+.stat-pct.done{color:var(--green)}
+
+/* LOG — clean structured rows */
+.log-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.log-header .section-title{margin-bottom:0;font-size:.92rem}
+.log-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1.5px solid var(--border)}
+.log-item:last-child{border-bottom:none}
+.log-avatar{width:36px;height:36px;border-radius:10px;background:var(--navy);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.2px}
+.log-body{flex:1;min-width:0}
+.log-name{font-size:.82rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:6px}
+.log-tag{font-size:.6rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1.5px solid var(--border);border-radius:4px;padding:1px 5px}
+.log-kpi{font-size:.77rem;font-weight:500;color:var(--muted);margin-top:1px}
+.log-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.log-badge{border-radius:8px;padding:4px 10px;font-size:.8rem;font-weight:800;white-space:nowrap}
+.log-badge.on{background:var(--green-bg);color:var(--green)}
+.log-badge.off{background:var(--red-bg);color:var(--pink-dk)}
+.log-badge.neutral{background:var(--bg);color:var(--navy)}
+.log-time{font-size:.68rem;color:var(--muted);font-weight:500}
+
+.design-label{background:var(--navy);color:#fff;text-align:center;padding:12px;font-size:.8rem;font-weight:700;letter-spacing:.5px}
+.design-desc{text-align:center;padding:8px 16px;font-size:.72rem;color:var(--muted);font-weight:500;background:var(--surface);border-bottom:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<div class="design-label">OPTION 3 — BOLD DASHBOARD</div>
+<div class="design-desc">Pure white · Bold colour-strip card tops · Large KPI stat numbers · Rounded square avatars · Data-first feel</div>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-mark"></div>
+    <div class="header-text">
+      <div class="brand">MyConsult</div>
+      <div class="brand-sub">Weekly KPI Tracker</div>
+    </div>
+    <div class="user-pill">
+      <div class="user-pill-avatar">DC</div>
+      <div>
+        <div class="user-pill-name">Dax Chew</div>
+        <div class="user-pill-sub">MyConsult Staff</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="card-strip strip-navy"></div>
+    <div class="card-body">
+      <div class="section-title">Submit This Week's Actuals</div>
+      <div class="section-sub">Week of 7 – 11 Apr</div>
+
+      <div class="field">
+        <label class="label">KPI</label>
+        <div class="select-wrap">
+          <select><option>Billable Hours</option></select>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="label-row">
+          <label class="label">Actual Value</label>
+          <span class="target-chip">Target: 40 hrs</span>
+        </div>
+        <input class="input" type="number" value="36" placeholder="Enter hrs" />
+      </div>
+
+      <div class="field">
+        <label class="label">Notes <span class="optional">(optional)</span></label>
+        <textarea class="input textarea" placeholder="Any context or blockers…"></textarea>
+      </div>
+
+      <button class="btn-primary">Submit KPI</button>
+    </div>
+  </div>
+
+  <!-- DEPARTMENT SUMMARY -->
+  <div class="card">
+    <div class="card-strip strip-gradient"></div>
+    <div class="card-body">
+      <div class="section-title">Department Summary</div>
+      <div class="section-sub">Team totals · Week of 7 – 11 Apr</div>
+
+      <div class="stat-area-label">Outsource Accounting &amp; Payroll</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Billable Hours</div>
+          <div class="stat-number">87</div>
+          <div class="stat-target">/ 160 hrs</div>
+          <div class="stat-contrib">3 contributors</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:54%"></div></div>
+          <div class="stat-pct">54%</div>
+        </div>
+        <div class="stat-card done">
+          <div class="stat-label">Client Reports</div>
+          <div class="stat-number">22</div>
+          <div class="stat-target">/ 20 reports</div>
+          <div class="stat-contrib">2 contributors</div>
+          <div class="progress-bar"><div class="progress-fill done" style="width:100%"></div></div>
+          <div class="stat-pct done">&#10003; Done</div>
+        </div>
+      </div>
+
+      <div class="stat-area-label" style="margin-top:16px">Software Solutions</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Tickets Resolved</div>
+          <div class="stat-number">38</div>
+          <div class="stat-target">/ 100 tickets</div>
+          <div class="stat-contrib">2 contributors</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:38%"></div></div>
+          <div class="stat-pct">38%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Bugs Fixed</div>
+          <div class="stat-number">24</div>
+          <div class="stat-target">/ 60 bugs</div>
+          <div class="stat-contrib">2 contributors</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+          <div class="stat-pct">40%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="card">
+    <div class="card-strip strip-sky"></div>
+    <div class="card-body">
+      <div class="log-header">
+        <div class="section-title">Individual Submissions</div>
+        <button class="btn-ghost">Clear all</button>
+      </div>
+
+      <div class="log-item">
+        <div class="log-avatar">DC</div>
+        <div class="log-body">
+          <div class="log-name">Dax Chew <span class="log-tag">OAP</span></div>
+          <div class="log-kpi">Billable Hours</div>
+        </div>
+        <div class="log-right">
+          <span class="log-badge on">36 / 40 hrs</span>
+          <span class="log-time">9:14 am</span>
+        </div>
+      </div>
+
+      <div class="log-item">
+        <div class="log-avatar" style="background:var(--pink)">MG</div>
+        <div class="log-body">
+          <div class="log-name">Meggy <span class="log-tag">SS</span></div>
+          <div class="log-kpi">Support Tickets Resolved</div>
+        </div>
+        <div class="log-right">
+          <span class="log-badge off">18 / 25 tickets</span>
+          <span class="log-time">8:52 am</span>
+        </div>
+      </div>
+
+      <div class="log-item">
+        <div class="log-avatar" style="background:var(--sky)">SC</div>
+        <div class="log-body">
+          <div class="log-name">Siao Chze <span class="log-tag">OAP</span></div>
+          <div class="log-kpi">Billable Hours</div>
+        </div>
+        <div class="log-right">
+          <span class="log-badge on">42 / 40 hrs</span>
+          <span class="log-time">8:30 am</span>
+        </div>
+      </div>
+
+      <div class="log-item">
+        <div class="log-avatar" style="background:#6a8fa8">AL</div>
+        <div class="log-body">
+          <div class="log-name">Aliff <span class="log-tag">SS</span></div>
+          <div class="log-kpi">Bugs Fixed</div>
+        </div>
+        <div class="log-right">
+          <span class="log-badge neutral">12 bugs</span>
+          <span class="log-time">8:15 am</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
