@@ -1,142 +1,782 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyConsult KPI Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyConsult KPI Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#13598c;--pink:#e86f82;--sky:#82b9d5;
+  --navy-dk:#0e4570;--pink-dk:#c85970;
+  --bg:#f7f9fc;--surface:#fff;--border:#e4eaf2;
+  --text:#16243a;--muted:#7a90a8;
+  --green:#22c55e;--amber:#f59e0b;--red:#e86f82;
+  --green-bg:#f0faf4;--amber-bg:#fffbeb;--red-bg:#fff0f3;
+}
+html{font-size:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:70px}
+
+/* HEADER */
+.header{background:#fff;padding:13px 16px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--navy)}
+.header-inner{max-width:600px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--sky),var(--pink));flex-shrink:0}
+.header-text{flex:1}
+.brand{font-size:1rem;font-weight:800;color:var(--navy)}
+.brand-sub{font-size:.6rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.user-pill{display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--border);border-radius:40px;padding:4px 10px 4px 4px;flex-shrink:0;cursor:pointer}
+.user-pill-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--sky),var(--navy));color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.user-pill-name{font-size:.7rem;font-weight:700;color:var(--navy)}
+
+/* TAB BAR */
+.tab-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--border);display:flex;z-index:100}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0 10px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:600;color:var(--muted);gap:3px;text-transform:uppercase;letter-spacing:.5px}
+.tab-btn.active{color:var(--navy)}
+.tab-icon{font-size:1.15rem;line-height:1}
+
+/* LAYOUT */
+.main{max-width:600px;margin:0 auto;padding:18px 14px 16px;display:flex;flex-direction:column;gap:14px}
+.view{display:none}
+.view.active{display:block}
+
+/* CARD */
+.card{background:var(--surface);border-radius:14px;border:1.5px solid var(--border);overflow:hidden}
+.card-strip{height:5px}
+.strip-navy{background:var(--navy)}
+.strip-gradient{background:linear-gradient(90deg,var(--navy),var(--pink))}
+.strip-sky{background:var(--sky)}
+.strip-pink{background:var(--pink)}
+.card-body{padding:20px 18px}
+.card+.card{margin-top:14px}
+
+/* SECTION TITLES */
+.section-title{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:2px}
+.section-sub{font-size:.72rem;font-weight:500;color:var(--muted);margin-bottom:16px}
+
+/* FORM */
+.field{margin-bottom:14px}
+.label{display:block;font-size:.76rem;font-weight:700;color:var(--text);margin-bottom:5px}
+.label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.label-row .label{margin-bottom:0}
+.optional{font-weight:400;color:var(--muted)}
+.input{width:100%;padding:11px 13px;border:2px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);background:#fff;outline:none;appearance:none;font-weight:500}
+.input:focus{border-color:var(--navy)}
+.select-wrap{position:relative}
+.select-wrap select{width:100%;padding:11px 34px 11px 13px;border:2px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);background:#fff;appearance:none;cursor:pointer;outline:none;font-weight:500}
+.select-wrap::after{content:'';position:absolute;right:13px;top:50%;transform:translateY(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--navy);pointer-events:none}
+.textarea{resize:vertical;min-height:66px}
+.target-chip{font-size:.68rem;font-weight:700;color:var(--navy);background:#eaf2f9;border:1.5px solid var(--sky);border-radius:6px;padding:3px 9px;flex-shrink:0}
+
+/* BUTTONS */
+.btn-primary{width:100%;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;letter-spacing:.3px;margin-top:4px}
+.btn-primary:active{background:var(--navy-dk)}
+.btn-secondary{width:100%;padding:11px;background:var(--bg);color:var(--navy);border:1.5px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;margin-top:8px}
+.btn-ghost{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer}
+
+/* PROGRESS BAR */
+.progress-bar{height:6px;background:var(--border);border-radius:10px;overflow:hidden;margin-top:6px}
+.progress-fill{height:100%;border-radius:10px;background:var(--sky);transition:width .3s}
+.progress-fill.green{background:var(--green)}
+.progress-fill.amber{background:var(--amber)}
+.progress-fill.red-fill{background:var(--red)}
+
+/* RAG BADGE */
+.rag-badge{display:inline-flex;align-items:center;border-radius:6px;padding:3px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.rag-green{background:var(--green-bg);color:#15803d}
+.rag-amber{background:var(--amber-bg);color:#92400e}
+.rag-red{background:var(--red-bg);color:var(--pink-dk)}
+.rag-none{background:var(--bg);color:var(--muted)}
+
+/* DEPT LABEL */
+.dept-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.dept-section{margin-bottom:20px}
+.dept-section:last-child{margin-bottom:0}
+
+/* KPI ROW (dashboard) */
+.kpi-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1.5px solid var(--border)}
+.kpi-row:last-child{border-bottom:none}
+.kpi-row-body{flex:1;min-width:0}
+.kpi-row-name{font-size:.82rem;font-weight:700;color:var(--text)}
+.kpi-row-meta{font-size:.7rem;color:var(--muted);margin-top:2px}
+.kpi-row-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+
+/* LOG ITEMS */
+.log-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1.5px solid var(--border)}
+.log-item:last-child{border-bottom:none}
+.log-avatar{width:36px;height:36px;border-radius:10px;color:#fff;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.log-body{flex:1;min-width:0}
+.log-name{font-size:.8rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:6px}
+.log-tag{font-size:.58rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1.5px solid var(--border);border-radius:4px;padding:1px 5px}
+.log-kpi{font-size:.74rem;color:var(--muted);margin-top:1px}
+.log-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.log-badge{border-radius:7px;padding:3px 9px;font-size:.76rem;font-weight:800;white-space:nowrap}
+.log-badge.on{background:var(--green-bg);color:#15803d}
+.log-badge.off{background:var(--red-bg);color:var(--pink-dk)}
+.log-badge.neutral{background:var(--bg);color:var(--navy)}
+.log-time{font-size:.65rem;color:var(--muted)}
+
+/* TARGET ROWS (targets screen) */
+.target-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1.5px solid var(--border)}
+.target-row:last-child{border-bottom:none}
+.target-row-info{flex:1}
+.target-row-label{font-size:.82rem;font-weight:700;color:var(--text)}
+.target-row-unit{font-size:.7rem;color:var(--muted);margin-top:2px}
+.target-row input{width:88px;padding:8px 10px;border:2px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);font-weight:700;outline:none;text-align:center;flex-shrink:0}
+.target-row input:focus{border-color:var(--navy)}
+
+/* CONFIRMATION */
+.confirm-icon{width:60px;height:60px;border-radius:50%;background:var(--green-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.8rem}
+.confirm-title{font-size:1.25rem;font-weight:800;color:var(--navy);text-align:center;margin-bottom:4px}
+.confirm-sub{font-size:.78rem;color:var(--muted);text-align:center;margin-bottom:18px}
+.confirm-detail{background:var(--bg);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.confirm-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.confirm-row:last-child{border-bottom:none}
+.confirm-key{color:var(--muted);font-weight:600}
+.confirm-val{color:var(--text);font-weight:700;text-align:right;max-width:60%}
+
+/* ADMIN KPI MANAGE */
+.kpi-manage-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1.5px solid var(--border)}
+.kpi-manage-item:last-child{border-bottom:none}
+.kpi-manage-body{flex:1;min-width:0}
+.kpi-manage-name{font-size:.82rem;font-weight:700;color:var(--text)}
+.kpi-manage-meta{font-size:.68rem;color:var(--muted);margin-top:2px}
+.toggle{position:relative;width:42px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:24px;cursor:pointer;transition:.2s}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.toggle input:checked+.toggle-slider{background:var(--navy)}
+.toggle input:checked+.toggle-slider::before{transform:translateX(18px)}
+
+/* ADD KPI FORM */
+.add-kpi-form{background:var(--bg);border-radius:10px;padding:14px;margin-top:14px;border:1.5px dashed var(--border)}
+.add-kpi-title{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:12px}
+
+/* DATA STATS */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--muted);font-weight:600}
+.stat-val{color:var(--text);font-weight:800}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:28px 16px;color:var(--muted);font-size:.82rem;font-weight:500}
+.empty-icon{font-size:2.2rem;margin-bottom:8px}
+
+/* UTILS */
+.mt14{margin-top:14px}
+.hidden{display:none!important}
+</style>
 </head>
 <body>
-  <div class="app">
 
-    <!-- ── Persistent header ──────────────────────────────────── -->
-    <header class="header">
-      <div class="header-inner">
-        <div class="logo-mark"></div>
-        <div class="header-text">
-          <h1 class="brand">MyConsult</h1>
-          <p class="brand-sub">Weekly KPI Tracker</p>
-        </div>
-        <!-- Shown only on the form screen -->
-        <div id="user-pill" class="user-pill hidden">
-          <span id="user-pill-avatar" class="user-pill-avatar"></span>
-          <div class="user-pill-info">
-            <span id="user-pill-name" class="user-pill-name"></span>
-            <span class="user-pill-dept">MyConsult Staff</span>
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-mark"></div>
+    <div class="header-text">
+      <div class="brand">MyConsult</div>
+      <div class="brand-sub">Weekly KPI Tracker</div>
+    </div>
+    <div class="user-pill" id="user-pill" onclick="handleUserPillClick()">
+      <div class="user-pill-avatar" id="pill-avatar">?</div>
+      <span class="user-pill-name" id="pill-name">Select User</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+  <!-- ── VIEW: STAFF SELECTION ── -->
+  <div class="view" id="v-select">
+    <div class="card">
+      <div class="card-strip strip-navy"></div>
+      <div class="card-body">
+        <div class="section-title">Welcome</div>
+        <div class="section-sub">Select your name and department to continue</div>
+        <div class="field">
+          <label class="label">Your Name</label>
+          <div class="select-wrap">
+            <select id="sel-name"><option value="">— Select name —</option></select>
           </div>
-          <button id="change-user-btn" class="change-user-btn" aria-label="Change user">&times;</button>
+        </div>
+        <div class="field">
+          <label class="label">Department</label>
+          <div class="select-wrap">
+            <select id="sel-dept"><option value="">— Select department —</option></select>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="handleSelectNext()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW: SET QUARTERLY TARGETS ── -->
+  <div class="view" id="v-targets">
+    <div class="card">
+      <div class="card-strip strip-gradient"></div>
+      <div class="card-body">
+        <div class="section-title">Set Quarterly Targets</div>
+        <div class="section-sub" id="targets-sub">Your personal targets for this quarter</div>
+        <div id="targets-list"></div>
+        <button class="btn-primary mt14" onclick="handleSaveTargets()">Save &amp; Continue →</button>
+        <button class="btn-secondary" onclick="showView('v-select')">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW: SUBMIT WEEKLY ACTUAL ── -->
+  <div class="view" id="v-submit">
+    <div class="card">
+      <div class="card-strip strip-navy"></div>
+      <div class="card-body">
+        <div class="section-title">Submit This Week's Actuals</div>
+        <div class="section-sub" id="submit-sub">Loading…</div>
+        <div class="field">
+          <label class="label">KPI</label>
+          <div class="select-wrap">
+            <select id="sel-kpi" onchange="handleKpiChange()"></select>
+          </div>
+        </div>
+        <div class="field">
+          <div class="label-row">
+            <label class="label">Actual Value</label>
+            <span class="target-chip hidden" id="submit-target-chip"></span>
+          </div>
+          <input class="input" type="number" id="inp-actual" placeholder="Enter value" min="0" />
+        </div>
+        <div class="field">
+          <label class="label">Notes <span class="optional">(optional)</span></label>
+          <textarea class="input textarea" id="inp-notes" placeholder="Any context or blockers…"></textarea>
+        </div>
+        <button class="btn-primary" onclick="handleSubmitKpi()">Submit KPI</button>
+        <button class="btn-secondary" onclick="showView('v-select')">← Change User / Dept</button>
+      </div>
+    </div>
+    <div class="card mt14" id="submit-log-card">
+      <div class="card-strip strip-sky"></div>
+      <div class="card-body">
+        <div class="section-title" style="margin-bottom:14px">My Submissions This Week</div>
+        <div id="submit-log"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW: CONFIRMATION ── -->
+  <div class="view" id="v-confirm">
+    <div class="card">
+      <div class="card-strip strip-gradient"></div>
+      <div class="card-body" style="text-align:center;padding:26px 18px">
+        <div class="confirm-icon">✓</div>
+        <div class="confirm-title">Submitted!</div>
+        <div class="confirm-sub" id="confirm-sub">KPI recorded successfully</div>
+        <div class="confirm-detail" id="confirm-detail"></div>
+        <button class="btn-primary" onclick="handleSubmitAnother()">Submit Another KPI</button>
+        <button class="btn-secondary" onclick="showView('v-select')">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW: DASHBOARD ── -->
+  <div class="view" id="v-dashboard">
+    <div class="card">
+      <div class="card-strip strip-gradient"></div>
+      <div class="card-body">
+        <div class="section-title">Department Dashboard</div>
+        <div class="section-sub" id="dash-sub">Team progress · Current quarter</div>
+        <div id="dashboard-content"></div>
+      </div>
+    </div>
+    <div class="card mt14">
+      <div class="card-strip strip-sky"></div>
+      <div class="card-body">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div class="section-title" style="margin-bottom:0">This Week's Submissions</div>
+          <span style="font-size:.68rem;color:var(--muted);font-weight:600" id="dash-week-label"></span>
+        </div>
+        <div id="dash-log"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW: ADMIN ── -->
+  <div class="view" id="v-admin">
+    <div class="card">
+      <div class="card-strip strip-navy"></div>
+      <div class="card-body">
+        <div class="section-title">KPI Management</div>
+        <div class="section-sub">Toggle active/inactive · Add new KPIs</div>
+        <div id="admin-kpi-list"></div>
+        <div class="add-kpi-form">
+          <div class="add-kpi-title">Add New KPI</div>
+          <div class="field">
+            <label class="label">KPI Name</label>
+            <input class="input" type="text" id="new-kpi-name" placeholder="e.g. Client Calls Made" />
+          </div>
+          <div class="field">
+            <label class="label">Department</label>
+            <div class="select-wrap">
+              <select id="new-kpi-dept"></select>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Unit</label>
+            <input class="input" type="text" id="new-kpi-unit" placeholder="e.g. calls, forms, hrs" />
+          </div>
+          <button class="btn-primary" onclick="handleAddKpi()">Add KPI</button>
         </div>
       </div>
-    </header>
-
-    <!-- ══════════════════════════════════════════════════════════
-         Screen 1 — Staff selection
-    ══════════════════════════════════════════════════════════ -->
-    <div id="screen-select" class="screen">
-      <main class="main select-main">
-        <div class="card">
-          <h2 class="section-title">Who are you?</h2>
-          <p class="section-meta" id="welcome-week"></p>
-
-          <div class="field" id="name-field">
-            <label class="label" for="select-name">Your Name</label>
-            <div class="select-wrap">
-              <select id="select-name">
-                <option value="" disabled selected>Select your name</option>
-              </select>
-            </div>
-          </div>
-
-          <div id="select-error" class="form-error hidden"></div>
-
-          <button type="button" id="continue-btn" class="btn-primary">
-            Let&rsquo;s go &rarr;
-          </button>
-        </div>
-      </main>
     </div>
-
-    <!-- ══════════════════════════════════════════════════════════
-         Screen 2 — KPI form & submission log
-    ══════════════════════════════════════════════════════════ -->
-    <div id="screen-form" class="screen hidden">
-      <main class="main">
-
-        <section class="card">
-          <h2 class="section-title">Submit This Week&rsquo;s Actuals</h2>
-          <p class="section-meta" id="week-label"></p>
-
-          <form id="kpi-form" novalidate>
-
-            <div class="field">
-              <label class="label" for="kpi-name">KPI</label>
-              <div class="select-wrap">
-                <select id="kpi-name" required>
-                  <option value="" disabled selected>Select a KPI</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="label-row">
-                <label class="label" for="kpi-actual">Actual Value</label>
-                <span id="target-chip" class="target-chip hidden"></span>
-              </div>
-              <input type="number" id="kpi-actual" class="input"
-                     placeholder="Enter value" min="0" step="any" required />
-            </div>
-
-            <div class="field">
-              <label class="label" for="kpi-notes">
-                Notes <span class="optional">(optional)</span>
-              </label>
-              <textarea id="kpi-notes" class="input textarea"
-                        placeholder="Any context or blockers…" rows="3"></textarea>
-            </div>
-
-            <div id="form-error" class="form-error hidden"></div>
-
-            <button type="submit" class="btn-primary">Submit KPI</button>
-          </form>
-        </section>
-
-        <!-- Toast notification -->
-        <div id="toast" class="toast hidden">
-          <span class="toast-icon">&#10003;</span>
-          <span id="toast-msg">KPI submitted!</span>
+    <div class="card mt14">
+      <div class="card-strip strip-pink"></div>
+      <div class="card-body">
+        <div class="section-title">Data Summary</div>
+        <div class="section-sub">Quarter: <strong id="admin-quarter">—</strong></div>
+        <div class="confirm-detail">
+          <div class="stat-row"><span class="stat-key">Total Submissions</span><span class="stat-val" id="admin-submissions">—</span></div>
+          <div class="stat-row"><span class="stat-key">Staff with Targets Set</span><span class="stat-val" id="admin-targets">—</span></div>
+          <div class="stat-row"><span class="stat-key">Active KPIs</span><span class="stat-val" id="admin-active">—</span></div>
         </div>
-
-        <!-- Department rollup summary -->
-        <section class="card" id="summary-section">
-          <h2 class="section-title">Department Summary</h2>
-          <p class="section-meta" id="summary-week-label"></p>
-          <div id="summary-list">
-            <p class="empty-state">No submissions yet.</p>
-          </div>
-        </section>
-
-        <!-- Individual submissions log -->
-        <section class="card">
-          <div class="log-header">
-            <h2 class="section-title">Individual Submissions</h2>
-            <button id="clear-btn" class="btn-ghost">Clear all</button>
-          </div>
-          <div id="log-list">
-            <p class="empty-state">No submissions yet.</p>
-          </div>
-        </section>
-
-      </main>
+        <button class="btn-secondary" style="color:var(--pink-dk);border-color:var(--pink)" onclick="handleClearWeek()">Clear This Week's Submissions</button>
+      </div>
     </div>
-
-    <footer class="footer">
-      &copy; <span id="year"></span> MyConsult &mdash; Data stored locally on this device.
-    </footer>
-
   </div>
-  <script src="app.js"></script>
+</div>
+
+<!-- BOTTOM TAB BAR -->
+<nav class="tab-bar">
+  <button class="tab-btn active" id="tab-submit" onclick="switchTab('submit')">
+    <span class="tab-icon">📋</span>Submit
+  </button>
+  <button class="tab-btn" id="tab-dashboard" onclick="switchTab('dashboard')">
+    <span class="tab-icon">📊</span>Dashboard
+  </button>
+  <button class="tab-btn" id="tab-admin" onclick="switchTab('admin')">
+    <span class="tab-icon">⚙️</span>Admin
+  </button>
+</nav>
+
+<script>
+// ── CONSTANTS ────────────────────────────────────────────
+const STAFF = [
+  'Adam','Afiqah','Aliah','Aliff','Auni','Dax Chew',
+  'Fikri','Haiqal','Haziq','Hkawn','Pei Pei','Siao Chze',
+  'Sya','Verlyn','Wong Mei Kee','Yu Nee'
+];
+
+const DEPTS = {
+  support:   { label:'Support Department',   short:'SUP' },
+  marketing: { label:'Marketing Department', short:'MKT' },
+};
+
+const DEFAULT_KPIS = [
+  { id:'support_tickets',     dept:'support',   label:'Number of Support Tickets',      unit:'tickets', active:true },
+  { id:'feedforward_forms',   dept:'support',   label:'Number of Feedforward Forms',    unit:'forms',   active:true },
+  { id:'support_signups',     dept:'support',   label:'Signups for Support Plan',       unit:'signups', active:true },
+  { id:'youtube_posts',       dept:'marketing', label:'Number of YouTube Posts',        unit:'posts',   active:true },
+  { id:'social_media_posts',  dept:'marketing', label:'Number of Social Media Postings',unit:'posts',   active:true },
+  { id:'community_size',      dept:'marketing', label:'Community Size',                 unit:'members', active:true },
+];
+
+const SK = { kpis:'mc_kpis', targets:'mc_targets', actuals:'mc_actuals', session:'mc_session' };
+
+// ── STATE ─────────────────────────────────────────────────
+let S = { session:null, kpis:[], targets:{}, actuals:{} };
+
+// ── MALAYSIA TIME ─────────────────────────────────────────
+function myDate()  { return new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kuala_Lumpur'}); }
+function myTime()  { return new Date().toLocaleTimeString('en-MY',{timeZone:'Asia/Kuala_Lumpur',hour:'2-digit',minute:'2-digit',hour12:true}); }
+
+function myWeekKey() {
+  const d = new Date(myDate()+'T00:00:00Z');
+  const day = d.getUTCDay();
+  const diff = day===0 ? -6 : 1-day;
+  return new Date(d.getTime()+diff*86400000).toISOString().slice(0,10);
+}
+
+function myQuarterKey() {
+  const [y,m] = myDate().split('-').map(Number);
+  return `${y}-Q${Math.ceil(m/3)}`;
+}
+
+function fmtWeek(wk) {
+  const d = new Date(wk+'T00:00:00Z');
+  const e = new Date(d.getTime()+4*86400000);
+  const o = {month:'short',day:'numeric',timeZone:'UTC'};
+  return `${d.toLocaleDateString('en-MY',o)} – ${e.toLocaleDateString('en-MY',o)}`;
+}
+
+// ── STORAGE ───────────────────────────────────────────────
+function load() {
+  try {
+    S.kpis    = JSON.parse(localStorage.getItem(SK.kpis))    || DEFAULT_KPIS.map(k=>({...k}));
+    S.targets = JSON.parse(localStorage.getItem(SK.targets)) || {};
+    S.actuals = JSON.parse(localStorage.getItem(SK.actuals)) || {};
+    S.session = JSON.parse(localStorage.getItem(SK.session)) || null;
+  } catch(_) {
+    S.kpis=DEFAULT_KPIS.map(k=>({...k})); S.targets={}; S.actuals={}; S.session=null;
+  }
+}
+const saveKpis    = () => localStorage.setItem(SK.kpis,   JSON.stringify(S.kpis));
+const saveTargets = () => localStorage.setItem(SK.targets,JSON.stringify(S.targets));
+const saveActuals = () => localStorage.setItem(SK.actuals,JSON.stringify(S.actuals));
+const saveSession = () => localStorage.setItem(SK.session,JSON.stringify(S.session));
+
+// ── HELPERS ───────────────────────────────────────────────
+const activeKpisForDept = d => S.kpis.filter(k=>k.dept===d&&k.active);
+const tKey = (n,k,q) => `${n}__${k}__${q}`;
+const aKey = (n,k,w) => `${n}__${k}__${w}`;
+const initials = n => n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+function avatarBg(name) {
+  const pool=['#13598c','#e86f82','#82b9d5','#6a8fa8','#4a7c59','#7c4a6f','#7c6a4a','#3a6e8c'];
+  let h=0; for(const c of name) h=(h*31+c.charCodeAt(0))&0xfffffff;
+  return pool[h%pool.length];
+}
+
+function hasAnyTarget(name, dept, qk) {
+  return activeKpisForDept(dept).some(k => S.targets[tKey(name,k.id,qk)] !== undefined);
+}
+
+// ── VIEW MANAGEMENT ───────────────────────────────────────
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if (tab==='submit') {
+    if (S.session) { renderSubmitView(); showView('v-submit'); }
+    else showView('v-select');
+  } else if (tab==='dashboard') { renderDashboard(); showView('v-dashboard'); }
+  else if (tab==='admin') { renderAdmin(); showView('v-admin'); }
+}
+
+// ── HEADER PILL ───────────────────────────────────────────
+function updatePill() {
+  const av = document.getElementById('pill-avatar');
+  const nm = document.getElementById('pill-name');
+  if (S.session) {
+    av.textContent = initials(S.session.name);
+    av.style.background = `linear-gradient(135deg,var(--sky),var(--navy))`;
+    nm.textContent = S.session.name;
+  } else {
+    av.textContent='?'; av.style.background='var(--muted)'; nm.textContent='Select User';
+  }
+}
+
+function handleUserPillClick() {
+  if (!S.session) return;
+  if (confirm(`Switch user? Session for ${S.session.name} will be cleared.`)) {
+    S.session=null; saveSession(); updatePill(); switchTab('submit');
+  }
+}
+
+// ── BOOT ──────────────────────────────────────────────────
+function init() {
+  load();
+  // Populate staff select
+  const sn = document.getElementById('sel-name');
+  STAFF.forEach(n=>{ const o=document.createElement('option'); o.value=n; o.textContent=n; sn.appendChild(o); });
+  // Populate dept selects
+  ['sel-dept','new-kpi-dept'].forEach(id=>{
+    const el=document.getElementById(id);
+    Object.entries(DEPTS).forEach(([k,d])=>{ const o=document.createElement('option'); o.value=k; o.textContent=d.label; el.appendChild(o); });
+  });
+  updatePill();
+  if (S.session) { renderSubmitView(); showView('v-submit'); }
+  else showView('v-select');
+  renderDashboard();
+  renderAdmin();
+}
+
+// ── SCREEN 1: SELECT ─────────────────────────────────────
+function handleSelectNext() {
+  const name = document.getElementById('sel-name').value;
+  const dept = document.getElementById('sel-dept').value;
+  if (!name) { alert('Please select your name.'); return; }
+  if (!dept) { alert('Please select your department.'); return; }
+  S.session = { name, dept, setAt:new Date().toISOString() };
+  saveSession(); updatePill();
+  const qk = myQuarterKey();
+  if (!hasAnyTarget(name, dept, qk)) { renderTargetsView(); showView('v-targets'); }
+  else { renderSubmitView(); showView('v-submit'); }
+}
+
+// ── SCREEN 2: TARGETS ────────────────────────────────────
+function renderTargetsView() {
+  const {name,dept} = S.session;
+  const qk = myQuarterKey();
+  document.getElementById('targets-sub').textContent = `${name} · ${DEPTS[dept].label} · ${qk}`;
+  const kpis = activeKpisForDept(dept);
+  const el = document.getElementById('targets-list');
+  if (!kpis.length) {
+    el.innerHTML='<div class="empty-state"><div class="empty-icon">📭</div>No active KPIs for this department</div>';
+    return;
+  }
+  el.innerHTML = kpis.map(k=>{
+    const val = S.targets[tKey(name,k.id,qk)] ?? '';
+    return `<div class="target-row">
+      <div class="target-row-info">
+        <div class="target-row-label">${k.label}</div>
+        <div class="target-row-unit">${k.unit}</div>
+      </div>
+      <input type="number" min="0" placeholder="0" value="${val}" id="ti-${k.id}" />
+    </div>`;
+  }).join('');
+}
+
+function handleSaveTargets() {
+  const {name,dept} = S.session;
+  const qk = myQuarterKey();
+  const kpis = activeKpisForDept(dept);
+  let ok = true;
+  kpis.forEach(k=>{
+    const v = document.getElementById('ti-'+k.id)?.value.trim();
+    if (v===''||isNaN(Number(v))) { ok=false; }
+    else S.targets[tKey(name,k.id,qk)] = Number(v);
+  });
+  if (!ok) { alert('Please fill in all quarterly targets.'); return; }
+  saveTargets(); renderSubmitView(); showView('v-submit');
+}
+
+// ── SCREEN 3: SUBMIT ─────────────────────────────────────
+function renderSubmitView() {
+  if (!S.session) return;
+  const {name,dept} = S.session;
+  const wk = myWeekKey();
+  document.getElementById('submit-sub').textContent =
+    `${name} · ${DEPTS[dept].label} · Week of ${fmtWeek(wk)}`;
+  const kpis = activeKpisForDept(dept);
+  const sel = document.getElementById('sel-kpi');
+  sel.innerHTML = kpis.length
+    ? kpis.map(k=>`<option value="${k.id}">${k.label}</option>`).join('')
+    : '<option value="">No active KPIs</option>';
+  handleKpiChange();
+  renderSubmitLog();
+}
+
+function handleKpiChange() {
+  if (!S.session) return;
+  const {name,dept} = S.session;
+  const kpiId = document.getElementById('sel-kpi').value;
+  const chip  = document.getElementById('submit-target-chip');
+  const kpi   = S.kpis.find(k=>k.id===kpiId);
+  if (kpi) {
+    const t = S.targets[tKey(name,kpiId,myQuarterKey())];
+    if (t !== undefined) { chip.textContent=`Target: ${t} ${kpi.unit}`; chip.classList.remove('hidden'); }
+    else chip.classList.add('hidden');
+  } else chip.classList.add('hidden');
+}
+
+function handleSubmitKpi() {
+  if (!S.session) return;
+  const {name,dept} = S.session;
+  const kpiId  = document.getElementById('sel-kpi').value;
+  const actual = document.getElementById('inp-actual').value.trim();
+  const notes  = document.getElementById('inp-notes').value.trim();
+  if (!kpiId)  { alert('Please select a KPI.'); return; }
+  if (actual===''||isNaN(Number(actual))) { alert('Please enter a valid value.'); return; }
+  const wk  = myWeekKey();
+  const qk  = myQuarterKey();
+  const kpi = S.kpis.find(k=>k.id===kpiId);
+  const target = S.targets[tKey(name,kpiId,qk)];
+  S.actuals[aKey(name,kpiId,wk)] = {
+    value:Number(actual), notes, time:myTime(),
+    dept, kpiLabel:kpi?.label||kpiId, kpiUnit:kpi?.unit||''
+  };
+  saveActuals();
+  renderConfirmation({name,dept,kpi,actual:Number(actual),target,notes,wk,qk});
+  document.getElementById('inp-actual').value='';
+  document.getElementById('inp-notes').value='';
+  showView('v-confirm');
+  renderDashboard();
+}
+
+// ── SCREEN 4: CONFIRMATION ───────────────────────────────
+function renderConfirmation({name,dept,kpi,actual,target,notes,wk,qk}) {
+  const pct = target!==undefined ? Math.round(actual/target*100) : null;
+  document.getElementById('confirm-sub').textContent = `${name} · ${DEPTS[dept].label}`;
+  const rows = [
+    {k:'KPI',    v: kpi?.label||'—'},
+    {k:'Value',  v: `${actual} ${kpi?.unit||''}`},
+    {k:'Target', v: target!==undefined ? `${target} ${kpi?.unit||''}` : 'Not set'},
+    {k:'Progress',v: pct!==null ? `${pct}%` : '—'},
+    {k:'Week',   v: fmtWeek(wk)},
+    {k:'Quarter',v: qk},
+  ];
+  if (notes) rows.push({k:'Notes',v:notes});
+  document.getElementById('confirm-detail').innerHTML =
+    rows.map(r=>`<div class="confirm-row"><span class="confirm-key">${r.k}</span><span class="confirm-val">${r.v}</span></div>`).join('');
+}
+
+function handleSubmitAnother() { renderSubmitLog(); showView('v-submit'); }
+
+// ── SUBMIT LOG ───────────────────────────────────────────
+function renderSubmitLog() {
+  if (!S.session) return;
+  const {name} = S.session;
+  const wk = myWeekKey(); const qk = myQuarterKey();
+  const entries = Object.entries(S.actuals)
+    .filter(([k])=>k.startsWith(name+'__')&&k.endsWith('__'+wk))
+    .map(([k,v])=>({kpiId:k.split('__')[1],...v}))
+    .sort((a,b)=>b.time.localeCompare(a.time));
+  const el = document.getElementById('submit-log');
+  if (!entries.length) {
+    el.innerHTML='<div class="empty-state" style="padding:14px 0"><div class="empty-icon">📭</div>No submissions this week yet</div>';
+    return;
+  }
+  el.innerHTML = entries.map(e=>{
+    const t = S.targets[tKey(name,e.kpiId,qk)];
+    const pct = t!==undefined ? e.value/t : null;
+    const bc = pct===null?'neutral':pct>=1?'on':pct>=0.6?'neutral':'off';
+    const bt = t!==undefined?`${e.value} / ${t} ${e.kpiUnit}`:`${e.value} ${e.kpiUnit}`;
+    return `<div class="log-item">
+      <div class="log-avatar" style="background:${avatarBg(name)}">${initials(name)}</div>
+      <div class="log-body">
+        <div class="log-name">${name} <span class="log-tag">${DEPTS[e.dept]?.short||e.dept}</span></div>
+        <div class="log-kpi">${e.kpiLabel}</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge ${bc}">${bt}</span>
+        <span class="log-time">${e.time}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── DASHBOARD ────────────────────────────────────────────
+function renderDashboard() {
+  const wk = myWeekKey(); const qk = myQuarterKey();
+  document.getElementById('dash-sub').textContent = `Team progress · ${qk}`;
+  document.getElementById('dash-week-label').textContent = `Week of ${fmtWeek(wk)}`;
+  let html = '';
+  Object.entries(DEPTS).forEach(([dk,dept])=>{
+    const kpis = S.kpis.filter(k=>k.dept===dk&&k.active);
+    if (!kpis.length) return;
+    html += `<div class="dept-section"><div class="dept-label">${dept.label}</div>`;
+    kpis.forEach(kpi=>{
+      let totalTarget=0, totalActual=0, actualCount=0;
+      STAFF.forEach(name=>{
+        const tv = S.targets[tKey(name,kpi.id,qk)];
+        if (tv!==undefined) totalTarget+=tv;
+        const av = S.actuals[aKey(name,kpi.id,wk)];
+        if (av!==undefined) { totalActual+=av.value; actualCount++; }
+      });
+      const weeklyTarget = totalTarget ? Math.round(totalTarget/13) : 0;
+      const pct = weeklyTarget ? Math.min(Math.round(totalActual/weeklyTarget*100),100) : 0;
+      let ragClass,ragLabel,fillClass;
+      if (!weeklyTarget) { ragClass='rag-none'; ragLabel='No target'; fillClass=''; }
+      else if (pct>=80)  { ragClass='rag-green'; ragLabel=`${pct}%`; fillClass='green'; }
+      else if (pct>=60)  { ragClass='rag-amber'; ragLabel=`${pct}%`; fillClass='amber'; }
+      else               { ragClass='rag-red';   ragLabel=`${pct}%`; fillClass='red-fill'; }
+      html += `<div class="kpi-row">
+        <div class="kpi-row-body">
+          <div class="kpi-row-name">${kpi.label}</div>
+          <div class="kpi-row-meta">${totalActual} / ${weeklyTarget} ${kpi.unit} · ${actualCount} submitted</div>
+          <div class="progress-bar"><div class="progress-fill ${fillClass}" style="width:${pct}%"></div></div>
+        </div>
+        <div class="kpi-row-right"><span class="rag-badge ${ragClass}">${ragLabel}</span></div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  document.getElementById('dashboard-content').innerHTML =
+    html || '<div class="empty-state"><div class="empty-icon">📊</div>No KPIs configured</div>';
+  // individual log
+  const entries = Object.entries(S.actuals)
+    .filter(([k])=>k.endsWith('__'+wk))
+    .map(([k,v])=>{ const p=k.split('__'); return {name:p[0],kpiId:p[1],...v}; })
+    .sort((a,b)=>b.time.localeCompare(a.time));
+  const logEl = document.getElementById('dash-log');
+  if (!entries.length) {
+    logEl.innerHTML='<div class="empty-state" style="padding:14px 0"><div class="empty-icon">📭</div>No submissions this week yet</div>';
+    return;
+  }
+  logEl.innerHTML = entries.map(e=>{
+    const t = S.targets[tKey(e.name,e.kpiId,qk)];
+    const pct = t!==undefined ? e.value/t : null;
+    const bc = pct===null?'neutral':pct>=1?'on':pct>=0.6?'neutral':'off';
+    const bt = t!==undefined?`${e.value} / ${t} ${e.kpiUnit}`:`${e.value} ${e.kpiUnit}`;
+    return `<div class="log-item">
+      <div class="log-avatar" style="background:${avatarBg(e.name)}">${initials(e.name)}</div>
+      <div class="log-body">
+        <div class="log-name">${e.name} <span class="log-tag">${DEPTS[e.dept]?.short||e.dept}</span></div>
+        <div class="log-kpi">${e.kpiLabel}</div>
+      </div>
+      <div class="log-right">
+        <span class="log-badge ${bc}">${bt}</span>
+        <span class="log-time">${e.time}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── ADMIN ─────────────────────────────────────────────────
+function renderAdmin() {
+  const qk = myQuarterKey();
+  document.getElementById('admin-quarter').textContent = qk;
+  document.getElementById('admin-submissions').textContent = Object.keys(S.actuals).length;
+  document.getElementById('admin-targets').textContent =
+    new Set(Object.keys(S.targets).map(k=>k.split('__')[0])).size;
+  const activeCount = S.kpis.filter(k=>k.active).length;
+  document.getElementById('admin-active').textContent = `${activeCount} / ${S.kpis.length}`;
+  let html = '';
+  Object.entries(DEPTS).forEach(([dk,dept])=>{
+    const kpis = S.kpis.filter(k=>k.dept===dk);
+    if (!kpis.length) return;
+    html += `<div class="dept-label" style="margin:0 0 8px">${dept.label}</div>`;
+    kpis.forEach(k=>{
+      html += `<div class="kpi-manage-item">
+        <div class="kpi-manage-body">
+          <div class="kpi-manage-name">${k.label}</div>
+          <div class="kpi-manage-meta">${k.unit} · ${k.active?'Active':'Inactive'}</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${k.active?'checked':''} onchange="toggleKpi('${k.id}',this.checked)" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>`;
+    });
+    html += '<div style="margin-bottom:16px"></div>';
+  });
+  document.getElementById('admin-kpi-list').innerHTML =
+    html || '<div class="empty-state"><div class="empty-icon">📭</div>No KPIs yet</div>';
+}
+
+function toggleKpi(id, active) {
+  const k = S.kpis.find(k=>k.id===id);
+  if (k) { k.active=active; saveKpis(); renderAdmin(); renderDashboard(); }
+}
+
+function handleAddKpi() {
+  const name = document.getElementById('new-kpi-name').value.trim();
+  const dept = document.getElementById('new-kpi-dept').value;
+  const unit = document.getElementById('new-kpi-unit').value.trim();
+  if (!name) { alert('Please enter a KPI name.'); return; }
+  if (!unit) { alert('Please enter a unit.'); return; }
+  S.kpis.push({ id:'custom_'+Date.now(), dept, label:name, unit, active:true });
+  saveKpis();
+  document.getElementById('new-kpi-name').value='';
+  document.getElementById('new-kpi-unit').value='';
+  renderAdmin(); renderDashboard();
+  alert(`"${name}" added to ${DEPTS[dept].label}.`);
+}
+
+function handleClearWeek() {
+  const wk = myWeekKey();
+  if (!confirm(`Clear all submissions for week of ${fmtWeek(wk)}? This cannot be undone.`)) return;
+  Object.keys(S.actuals).forEach(k=>{ if(k.endsWith('__'+wk)) delete S.actuals[k]; });
+  saveActuals(); renderDashboard(); renderAdmin();
+  if (S.session) renderSubmitLog();
+  alert('Week cleared.');
+}
+
+// ── START ─────────────────────────────────────────────────
+init();
+</script>
 </body>
 </html>
