@@ -7,8 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#13598c;--pink:#e86f82;--sky:#82b9d5;
   --navy-dk:#0e4570;--pink-dk:#c85970;
@@ -18,7 +17,7 @@
   --green-bg:#f0faf4;--amber-bg:#fffbeb;--red-bg:#fff0f3;
 }
 html{font-size:16px}
-body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:70px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:72px}
 
 /* HEADER */
 .header{background:#fff;padding:13px 16px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--navy)}
@@ -28,31 +27,30 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 .brand{font-size:1rem;font-weight:800;color:var(--navy)}
 .brand-sub{font-size:.6rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
 .user-pill{display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--border);border-radius:40px;padding:4px 10px 4px 4px;flex-shrink:0;cursor:pointer}
-.user-pill-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--sky),var(--navy));color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.user-pill-avatar{width:26px;height:26px;border-radius:50%;background:var(--muted);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center}
 .user-pill-name{font-size:.7rem;font-weight:700;color:var(--navy)}
 
 /* TAB BAR */
 .tab-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--border);display:flex;z-index:100}
-.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0 10px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:600;color:var(--muted);gap:3px;text-transform:uppercase;letter-spacing:.5px}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 0 10px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:600;color:var(--muted);gap:3px;text-transform:uppercase;letter-spacing:.4px}
 .tab-btn.active{color:var(--navy)}
-.tab-icon{font-size:1.15rem;line-height:1}
+.tab-icon{font-size:1.1rem;line-height:1}
 
 /* LAYOUT */
-.main{max-width:600px;margin:0 auto;padding:18px 14px 16px;display:flex;flex-direction:column;gap:14px}
+.main{max-width:600px;margin:0 auto;padding:18px 14px 16px}
 .view{display:none}
-.view.active{display:block}
+.view.active{display:flex;flex-direction:column;gap:14px}
 
 /* CARD */
-.card{background:var(--surface);border-radius:14px;border:1.5px solid var(--border);overflow:hidden}
+.card{background:var(--surface);border-radius:14px;border:1.5px solid var(--border);overflow:hidden;flex-shrink:0}
 .card-strip{height:5px}
 .strip-navy{background:var(--navy)}
 .strip-gradient{background:linear-gradient(90deg,var(--navy),var(--pink))}
 .strip-sky{background:var(--sky)}
 .strip-pink{background:var(--pink)}
 .card-body{padding:20px 18px}
-.card+.card{margin-top:14px}
 
-/* SECTION TITLES */
+/* TITLES */
 .section-title{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:2px}
 .section-sub{font-size:.72rem;font-weight:500;color:var(--muted);margin-bottom:16px}
 
@@ -74,7 +72,36 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 .btn-primary{width:100%;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;letter-spacing:.3px;margin-top:4px}
 .btn-primary:active{background:var(--navy-dk)}
 .btn-secondary{width:100%;padding:11px;background:var(--bg);color:var(--navy);border:1.5px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;margin-top:8px}
-.btn-ghost{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer}
+.btn-link{background:none;border:none;font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:700;color:var(--navy);cursor:pointer;text-decoration:underline;padding:0}
+
+/* LOGIN */
+.login-welcome{font-size:1.4rem;font-weight:800;color:var(--navy);text-align:center;margin-bottom:4px}
+.login-sub{font-size:.78rem;color:var(--muted);text-align:center;margin-bottom:22px}
+.pin-input{text-align:center;font-size:1.6rem;font-weight:800;letter-spacing:.4rem;color:var(--navy)}
+.login-error{background:var(--red-bg);color:var(--pink-dk);border-radius:8px;padding:10px 14px;font-size:.78rem;font-weight:700;text-align:center;margin-top:10px;display:none}
+.login-error.show{display:block}
+
+/* QUARTER BADGE */
+.quarter-badge{display:inline-flex;align-items:center;gap:6px;background:#eaf2f9;color:var(--navy);border-radius:8px;padding:7px 12px;font-size:.74rem;font-weight:700;margin-bottom:16px;width:100%}
+.qb-weeks{margin-left:auto;font-size:.68rem;font-weight:600;color:var(--muted)}
+
+/* KPI CHECKBOX SELECTION */
+.kpi-check-item{border:2px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color .15s,background .15s}
+.kpi-check-item.checked{border-color:var(--navy);background:#eaf2f9}
+.kpi-check-body{flex:1;min-width:0}
+.kpi-check-name{font-size:.84rem;font-weight:700;color:var(--text)}
+.kpi-check-meta{font-size:.7rem;color:var(--muted);margin-top:2px}
+.kpi-check-icon{font-size:1.3rem;color:var(--border);flex-shrink:0;transition:color .15s}
+.kpi-check-item.checked .kpi-check-icon{color:var(--navy)}
+
+/* TARGET ROWS */
+.target-row{padding:12px 0;border-bottom:1.5px solid var(--border)}
+.target-row:last-child{border-bottom:none}
+.target-row-top{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.target-row-label{flex:1;font-size:.84rem;font-weight:700;color:var(--text)}
+.target-row input{width:90px;padding:8px 10px;border:2px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);font-weight:700;outline:none;text-align:center;flex-shrink:0}
+.target-row input:focus{border-color:var(--navy)}
+.target-row-hint{font-size:.7rem;color:var(--muted);font-style:italic}
 
 /* PROGRESS BAR */
 .progress-bar{height:6px;background:var(--border);border-radius:10px;overflow:hidden;margin-top:6px}
@@ -89,6 +116,19 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 .rag-amber{background:var(--amber-bg);color:#92400e}
 .rag-red{background:var(--red-bg);color:var(--pink-dk)}
 .rag-none{background:var(--bg);color:var(--muted)}
+
+/* MY PROGRESS CARDS */
+.prog-card{border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.prog-card:last-child{margin-bottom:0}
+.prog-kpi-name{font-size:.84rem;font-weight:800;color:var(--text);margin-bottom:2px}
+.prog-kpi-dept{font-size:.66rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.prog-nums{display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
+.prog-actual{font-size:2rem;font-weight:800;color:var(--navy);line-height:1}
+.prog-target{font-size:.84rem;color:var(--muted);font-weight:500}
+.prog-pct{font-size:.76rem;font-weight:700;margin-top:4px}
+.prog-pct.green{color:#15803d}
+.prog-pct.amber{color:#92400e}
+.prog-pct.red{color:var(--pink-dk)}
 
 /* DEPT LABEL */
 .dept-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
@@ -118,15 +158,6 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 .log-badge.neutral{background:var(--bg);color:var(--navy)}
 .log-time{font-size:.65rem;color:var(--muted)}
 
-/* TARGET ROWS (targets screen) */
-.target-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1.5px solid var(--border)}
-.target-row:last-child{border-bottom:none}
-.target-row-info{flex:1}
-.target-row-label{font-size:.82rem;font-weight:700;color:var(--text)}
-.target-row-unit{font-size:.7rem;color:var(--muted);margin-top:2px}
-.target-row input{width:88px;padding:8px 10px;border:2px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:var(--text);font-weight:700;outline:none;text-align:center;flex-shrink:0}
-.target-row input:focus{border-color:var(--navy)}
-
 /* CONFIRMATION */
 .confirm-icon{width:60px;height:60px;border-radius:50%;background:var(--green-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.8rem}
 .confirm-title{font-size:1.25rem;font-weight:800;color:var(--navy);text-align:center;margin-bottom:4px}
@@ -137,7 +168,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 .confirm-key{color:var(--muted);font-weight:600}
 .confirm-val{color:var(--text);font-weight:700;text-align:right;max-width:60%}
 
-/* ADMIN KPI MANAGE */
+/* ADMIN */
 .kpi-manage-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1.5px solid var(--border)}
 .kpi-manage-item:last-child{border-bottom:none}
 .kpi-manage-body{flex:1;min-width:0}
@@ -149,29 +180,28 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 .toggle-slider::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
 .toggle input:checked+.toggle-slider{background:var(--navy)}
 .toggle input:checked+.toggle-slider::before{transform:translateX(18px)}
-
-/* ADD KPI FORM */
 .add-kpi-form{background:var(--bg);border-radius:10px;padding:14px;margin-top:14px;border:1.5px dashed var(--border)}
 .add-kpi-title{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:12px}
-
-/* DATA STATS */
 .stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.82rem}
 .stat-row:last-child{border-bottom:none}
 .stat-key{color:var(--muted);font-weight:600}
 .stat-val{color:var(--text);font-weight:800}
+.pin-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1.5px solid var(--border)}
+.pin-row:last-child{border-bottom:none}
+.pin-row-name{flex:1;font-size:.82rem;font-weight:700;color:var(--text)}
+.pin-display{font-size:.78rem;color:var(--muted);font-weight:600;min-width:36px}
+.btn-pin-reset{background:var(--bg);border:1.5px solid var(--border);border-radius:6px;padding:4px 10px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;color:var(--navy);cursor:pointer}
 
 /* EMPTY STATE */
 .empty-state{text-align:center;padding:28px 16px;color:var(--muted);font-size:.82rem;font-weight:500}
 .empty-icon{font-size:2.2rem;margin-bottom:8px}
 
 /* UTILS */
-.mt14{margin-top:14px}
-.hidden{display:none!important}
-</style>
+.mt8{margin-top:8px}
+.hidden{display:none!important}</style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-inner">
     <div class="logo-mark"></div>
@@ -181,52 +211,71 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
     </div>
     <div class="user-pill" id="user-pill" onclick="handleUserPillClick()">
       <div class="user-pill-avatar" id="pill-avatar">?</div>
-      <span class="user-pill-name" id="pill-name">Select User</span>
+      <span class="user-pill-name" id="pill-name">Log In</span>
     </div>
   </div>
 </header>
 
-<!-- MAIN CONTENT -->
 <div class="main">
-  <!-- ── VIEW: STAFF SELECTION ── -->
-  <div class="view" id="v-select">
+  <!-- ── LOGIN ── -->
+  <div class="view" id="v-login">
     <div class="card">
-      <div class="card-strip strip-navy"></div>
+      <div class="card-strip strip-gradient"></div>
       <div class="card-body">
-        <div class="section-title">Welcome</div>
-        <div class="section-sub">Select your name and department to continue</div>
+        <div class="login-welcome">Welcome Back</div>
+        <div class="login-sub">Log in to submit your KPIs</div>
         <div class="field">
           <label class="label">Your Name</label>
-          <div class="select-wrap">
-            <select id="sel-name"><option value="">— Select name —</option></select>
-          </div>
+          <div class="select-wrap"><select id="sel-name"><option value="">— Select name —</option></select></div>
         </div>
         <div class="field">
-          <label class="label">Department</label>
-          <div class="select-wrap">
-            <select id="sel-dept"><option value="">— Select department —</option></select>
-          </div>
+          <label class="label">PIN</label>
+          <input class="input pin-input" type="password" id="inp-pin" maxlength="4" placeholder="••••" inputmode="numeric" />
         </div>
-        <button class="btn-primary" onclick="handleSelectNext()">Next →</button>
+        <div class="login-error" id="login-error">Incorrect PIN. Please try again.</div>
+        <button class="btn-primary" onclick="handleLogin()" style="margin-top:16px">Log In →</button>
+        <p style="text-align:center;font-size:.68rem;color:var(--muted);margin-top:12px">Default PIN is <strong>0000</strong> · Reset in Admin</p>
       </div>
     </div>
   </div>
 
-  <!-- ── VIEW: SET QUARTERLY TARGETS ── -->
+  <!-- ── KPI SELECTION ── -->
+  <div class="view" id="v-kpi-select">
+    <div class="card">
+      <div class="card-strip strip-navy"></div>
+      <div class="card-body">
+        <div class="section-title">Select Your KPIs</div>
+        <div class="section-sub" id="kpi-sel-sub">Choose the KPIs you are responsible for this quarter</div>
+        <div class="quarter-badge" id="kpi-sel-badge">
+          <span>📅</span><span id="kpi-sel-qk">—</span><span id="kpi-sel-range">—</span>
+          <span class="qb-weeks" id="kpi-sel-weeks">—</span>
+        </div>
+        <div id="kpi-check-list"></div>
+        <button class="btn-primary mt8" onclick="handleSaveKpiSelect()">Confirm My KPIs →</button>
+        <button class="btn-secondary" onclick="showView('v-login')">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUARTERLY TARGETS ── -->
   <div class="view" id="v-targets">
     <div class="card">
       <div class="card-strip strip-gradient"></div>
       <div class="card-body">
         <div class="section-title">Set Quarterly Targets</div>
-        <div class="section-sub" id="targets-sub">Your personal targets for this quarter</div>
+        <div class="section-sub">Enter how much you plan to achieve for each KPI this quarter</div>
+        <div class="quarter-badge" id="targets-badge">
+          <span>📅</span><span id="targets-qk">—</span><span id="targets-range">—</span>
+          <span class="qb-weeks" id="targets-weeks">— weeks remaining</span>
+        </div>
         <div id="targets-list"></div>
-        <button class="btn-primary mt14" onclick="handleSaveTargets()">Save &amp; Continue →</button>
-        <button class="btn-secondary" onclick="showView('v-select')">← Back</button>
+        <button class="btn-primary mt8" onclick="handleSaveTargets()">Save Targets →</button>
+        <button class="btn-secondary" onclick="showView('v-kpi-select')">← Change My KPIs</button>
       </div>
     </div>
   </div>
 
-  <!-- ── VIEW: SUBMIT WEEKLY ACTUAL ── -->
+  <!-- ── SUBMIT WEEKLY ACTUAL ── -->
   <div class="view" id="v-submit">
     <div class="card">
       <div class="card-strip strip-navy"></div>
@@ -235,9 +284,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
         <div class="section-sub" id="submit-sub">Loading…</div>
         <div class="field">
           <label class="label">KPI</label>
-          <div class="select-wrap">
-            <select id="sel-kpi" onchange="handleKpiChange()"></select>
-          </div>
+          <div class="select-wrap"><select id="sel-kpi" onchange="handleKpiChange()"></select></div>
         </div>
         <div class="field">
           <div class="label-row">
@@ -251,10 +298,12 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
           <textarea class="input textarea" id="inp-notes" placeholder="Any context or blockers…"></textarea>
         </div>
         <button class="btn-primary" onclick="handleSubmitKpi()">Submit KPI</button>
-        <button class="btn-secondary" onclick="showView('v-select')">← Change User / Dept</button>
+        <div style="text-align:center;margin-top:10px">
+          <button class="btn-link" onclick="showView('v-kpi-select')">Change my KPIs</button>
+        </div>
       </div>
     </div>
-    <div class="card mt14" id="submit-log-card">
+    <div class="card">
       <div class="card-strip strip-sky"></div>
       <div class="card-body">
         <div class="section-title" style="margin-bottom:14px">My Submissions This Week</div>
@@ -263,7 +312,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
     </div>
   </div>
 
-  <!-- ── VIEW: CONFIRMATION ── -->
+  <!-- ── CONFIRMATION ── -->
   <div class="view" id="v-confirm">
     <div class="card">
       <div class="card-strip strip-gradient"></div>
@@ -273,22 +322,38 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
         <div class="confirm-sub" id="confirm-sub">KPI recorded successfully</div>
         <div class="confirm-detail" id="confirm-detail"></div>
         <button class="btn-primary" onclick="handleSubmitAnother()">Submit Another KPI</button>
-        <button class="btn-secondary" onclick="showView('v-select')">Done</button>
+        <button class="btn-secondary" onclick="switchTab('progress')">View My Progress</button>
       </div>
     </div>
   </div>
 
-  <!-- ── VIEW: DASHBOARD ── -->
+  <!-- ── MY PROGRESS ── -->
+  <div class="view" id="v-progress">
+    <div class="card">
+      <div class="card-strip strip-gradient"></div>
+      <div class="card-body">
+        <div class="section-title">My Quarter Progress</div>
+        <div class="section-sub" id="prog-sub">Your cumulative totals vs quarterly targets</div>
+        <div class="quarter-badge" id="prog-badge">
+          <span>📅</span><span id="prog-qk">—</span><span id="prog-range">—</span>
+          <span class="qb-weeks" id="prog-weeks">—</span>
+        </div>
+        <div id="prog-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
   <div class="view" id="v-dashboard">
     <div class="card">
       <div class="card-strip strip-gradient"></div>
       <div class="card-body">
         <div class="section-title">Department Dashboard</div>
-        <div class="section-sub" id="dash-sub">Team progress · Current quarter</div>
+        <div class="section-sub" id="dash-sub">Team weekly progress · Current quarter</div>
         <div id="dashboard-content"></div>
       </div>
     </div>
-    <div class="card mt14">
+    <div class="card">
       <div class="card-strip strip-sky"></div>
       <div class="card-body">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
@@ -300,7 +365,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
     </div>
   </div>
 
-  <!-- ── VIEW: ADMIN ── -->
+  <!-- ── ADMIN ── -->
   <div class="view" id="v-admin">
     <div class="card">
       <div class="card-strip strip-navy"></div>
@@ -315,20 +380,30 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
             <input class="input" type="text" id="new-kpi-name" placeholder="e.g. Client Calls Made" />
           </div>
           <div class="field">
-            <label class="label">Department</label>
-            <div class="select-wrap">
-              <select id="new-kpi-dept"></select>
-            </div>
+            <label class="label">Department (for dashboard grouping)</label>
+            <div class="select-wrap"><select id="new-kpi-dept"></select></div>
           </div>
           <div class="field">
             <label class="label">Unit</label>
             <input class="input" type="text" id="new-kpi-unit" placeholder="e.g. calls, forms, hrs" />
           </div>
+          <div class="field">
+            <label class="label">Hint <span class="optional">(shown on target-setting screen)</span></label>
+            <input class="input" type="text" id="new-kpi-hint" placeholder="e.g. Total calls planned for the quarter" />
+          </div>
           <button class="btn-primary" onclick="handleAddKpi()">Add KPI</button>
         </div>
       </div>
     </div>
-    <div class="card mt14">
+    <div class="card">
+      <div class="card-strip strip-sky"></div>
+      <div class="card-body">
+        <div class="section-title">User PIN Management</div>
+        <div class="section-sub">Reset any user's PIN back to 0000</div>
+        <div id="admin-pin-list"></div>
+      </div>
+    </div>
+    <div class="card">
       <div class="card-strip strip-pink"></div>
       <div class="card-body">
         <div class="section-title">Data Summary</div>
@@ -344,26 +419,15 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
   </div>
 </div>
 
-<!-- BOTTOM TAB BAR -->
-<nav class="tab-bar">
-  <button class="tab-btn active" id="tab-submit" onclick="switchTab('submit')">
-    <span class="tab-icon">📋</span>Submit
-  </button>
-  <button class="tab-btn" id="tab-dashboard" onclick="switchTab('dashboard')">
-    <span class="tab-icon">📊</span>Dashboard
-  </button>
-  <button class="tab-btn" id="tab-admin" onclick="switchTab('admin')">
-    <span class="tab-icon">⚙️</span>Admin
-  </button>
+<nav class="tab-bar" id="tab-bar">
+  <button class="tab-btn active" id="tab-submit"   onclick="switchTab('submit')"><span class="tab-icon">📋</span>Submit</button>
+  <button class="tab-btn"        id="tab-progress" onclick="switchTab('progress')"><span class="tab-icon">📈</span>Progress</button>
+  <button class="tab-btn"        id="tab-dashboard" onclick="switchTab('dashboard')"><span class="tab-icon">📊</span>Dashboard</button>
+  <button class="tab-btn"        id="tab-admin"    onclick="switchTab('admin')"><span class="tab-icon">⚙️</span>Admin</button>
 </nav>
 
-<script>
-// ── CONSTANTS ────────────────────────────────────────────
-const STAFF = [
-  'Adam','Afiqah','Aliah','Aliff','Auni','Dax Chew',
-  'Fikri','Haiqal','Haziq','Hkawn','Pei Pei','Siao Chze',
-  'Sya','Verlyn','Wong Mei Kee','Yu Nee'
-];
+<script>// ── CONSTANTS ─────────────────────────────────────────────
+const STAFF = ['Adam','Afiqah','Aliah','Aliff','Auni','Dax Chew','Fikri','Haiqal','Haziq','Hkawn','Pei Pei','Siao Chze','Sya','Verlyn','Wong Mei Kee','Yu Nee'];
 
 const DEPTS = {
   support:   { label:'Support Department',   short:'SUP' },
@@ -371,20 +435,20 @@ const DEPTS = {
 };
 
 const DEFAULT_KPIS = [
-  { id:'support_tickets',     dept:'support',   label:'Number of Support Tickets',      unit:'tickets', active:true },
-  { id:'feedforward_forms',   dept:'support',   label:'Number of Feedforward Forms',    unit:'forms',   active:true },
-  { id:'support_signups',     dept:'support',   label:'Signups for Support Plan',       unit:'signups', active:true },
-  { id:'youtube_posts',       dept:'marketing', label:'Number of YouTube Posts',        unit:'posts',   active:true },
-  { id:'social_media_posts',  dept:'marketing', label:'Number of Social Media Postings',unit:'posts',   active:true },
-  { id:'community_size',      dept:'marketing', label:'Community Size',                 unit:'members', active:true },
+  { id:'support_tickets',    dept:'support',   label:'Number of Support Tickets',       unit:'tickets', hint:'Total support tickets you plan to handle this quarter',        active:true },
+  { id:'feedforward_forms',  dept:'support',   label:'Number of Feedforward Forms',     unit:'forms',   hint:'Total feedforward forms you plan to complete this quarter',     active:true },
+  { id:'support_signups',    dept:'support',   label:'Signups for Support Plan',        unit:'signups', hint:'Total new support plan signups you plan to achieve',            active:true },
+  { id:'youtube_posts',      dept:'marketing', label:'Number of YouTube Posts',         unit:'posts',   hint:'Total YouTube videos you plan to publish this quarter',         active:true },
+  { id:'social_media_posts', dept:'marketing', label:'Number of Social Media Postings', unit:'posts',   hint:'Total social media posts you plan to publish this quarter',     active:true },
+  { id:'community_size',     dept:'marketing', label:'Community Size',                  unit:'members', hint:'Target community member count by end of this quarter',          active:true },
 ];
 
-const SK = { kpis:'mc_kpis', targets:'mc_targets', actuals:'mc_actuals', session:'mc_session' };
+const SK = { kpis:'mc_kpis', targets:'mc_targets', actuals:'mc_actuals', session:'mc_session', pins:'mc_pins', userKpis:'mc_user_kpis' };
 
-// ── STATE ─────────────────────────────────────────────────
-let S = { session:null, kpis:[], targets:{}, actuals:{} };
+// ── STATE ──────────────────────────────────────────────────
+let S = { session:null, kpis:[], targets:{}, actuals:{}, pins:{}, userKpis:{} };
 
-// ── MALAYSIA TIME ─────────────────────────────────────────
+// ── MALAYSIA TIME ──────────────────────────────────────────
 function myDate()  { return new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kuala_Lumpur'}); }
 function myTime()  { return new Date().toLocaleTimeString('en-MY',{timeZone:'Asia/Kuala_Lumpur',hour:'2-digit',minute:'2-digit',hour12:true}); }
 
@@ -400,6 +464,26 @@ function myQuarterKey() {
   return `${y}-Q${Math.ceil(m/3)}`;
 }
 
+function weekToQuarter(wk) {
+  const [y,m] = wk.split('-').map(Number);
+  return `${y}-Q${Math.ceil(m/3)}`;
+}
+
+function getQuarterInfo(qk) {
+  const [year, q] = qk.split('-Q').map(Number);
+  const sm = [0,3,6,9][q-1]; const em = [2,5,8,11][q-1];
+  const start = new Date(Date.UTC(year,sm,1));
+  const end   = new Date(Date.UTC(year,em+1,0));
+  const opts  = {month:'short',day:'numeric',timeZone:'UTC'};
+  const today = new Date(myDate()+'T00:00:00Z');
+  const weeksLeft = Math.max(0, Math.ceil((end-today)/(7*86400000)));
+  return {
+    label: qk,
+    range: `${start.toLocaleDateString('en-MY',opts)} – ${end.toLocaleDateString('en-MY',{...opts,year:'numeric'})}`,
+    weeksLeft,
+  };
+}
+
 function fmtWeek(wk) {
   const d = new Date(wk+'T00:00:00Z');
   const e = new Date(d.getTime()+4*86400000);
@@ -407,39 +491,40 @@ function fmtWeek(wk) {
   return `${d.toLocaleDateString('en-MY',o)} – ${e.toLocaleDateString('en-MY',o)}`;
 }
 
-// ── STORAGE ───────────────────────────────────────────────
+// ── STORAGE ────────────────────────────────────────────────
 function load() {
   try {
-    S.kpis    = JSON.parse(localStorage.getItem(SK.kpis))    || DEFAULT_KPIS.map(k=>({...k}));
-    S.targets = JSON.parse(localStorage.getItem(SK.targets)) || {};
-    S.actuals = JSON.parse(localStorage.getItem(SK.actuals)) || {};
-    S.session = JSON.parse(localStorage.getItem(SK.session)) || null;
+    S.kpis     = JSON.parse(localStorage.getItem(SK.kpis))     || DEFAULT_KPIS.map(k=>({...k}));
+    S.targets  = JSON.parse(localStorage.getItem(SK.targets))  || {};
+    S.actuals  = JSON.parse(localStorage.getItem(SK.actuals))  || {};
+    S.session  = JSON.parse(localStorage.getItem(SK.session))  || null;
+    S.pins     = JSON.parse(localStorage.getItem(SK.pins))     || {};
+    S.userKpis = JSON.parse(localStorage.getItem(SK.userKpis)) || {};
   } catch(_) {
-    S.kpis=DEFAULT_KPIS.map(k=>({...k})); S.targets={}; S.actuals={}; S.session=null;
+    S.kpis=DEFAULT_KPIS.map(k=>({...k})); S.targets={}; S.actuals={}; S.session=null; S.pins={}; S.userKpis={};
   }
 }
-const saveKpis    = () => localStorage.setItem(SK.kpis,   JSON.stringify(S.kpis));
-const saveTargets = () => localStorage.setItem(SK.targets,JSON.stringify(S.targets));
-const saveActuals = () => localStorage.setItem(SK.actuals,JSON.stringify(S.actuals));
-const saveSession = () => localStorage.setItem(SK.session,JSON.stringify(S.session));
+const saveKpis     = () => localStorage.setItem(SK.kpis,    JSON.stringify(S.kpis));
+const saveTargets  = () => localStorage.setItem(SK.targets, JSON.stringify(S.targets));
+const saveActuals  = () => localStorage.setItem(SK.actuals, JSON.stringify(S.actuals));
+const saveSession  = () => localStorage.setItem(SK.session, JSON.stringify(S.session));
+const savePins     = () => localStorage.setItem(SK.pins,    JSON.stringify(S.pins));
+const saveUserKpis = () => localStorage.setItem(SK.userKpis,JSON.stringify(S.userKpis));
 
-// ── HELPERS ───────────────────────────────────────────────
-const activeKpisForDept = d => S.kpis.filter(k=>k.dept===d&&k.active);
+// ── HELPERS ────────────────────────────────────────────────
 const tKey = (n,k,q) => `${n}__${k}__${q}`;
 const aKey = (n,k,w) => `${n}__${k}__${w}`;
 const initials = n => n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-
-function avatarBg(name) {
-  const pool=['#13598c','#e86f82','#82b9d5','#6a8fa8','#4a7c59','#7c4a6f','#7c6a4a','#3a6e8c'];
-  let h=0; for(const c of name) h=(h*31+c.charCodeAt(0))&0xfffffff;
-  return pool[h%pool.length];
+function avatarBg(name){const pool=['#13598c','#e86f82','#82b9d5','#6a8fa8','#4a7c59','#7c4a6f','#7c6a4a','#3a6e8c'];let h=0;for(const c of name)h=(h*31+c.charCodeAt(0))&0xfffffff;return pool[h%pool.length];}
+function getPin(name){ return S.pins[name] || '0000'; }
+function getUserKpiIds(name, qk){ return S.userKpis[`${name}__${qk}`] || null; }
+function getQuarterTotal(name, kpiId, qk) {
+  return Object.entries(S.actuals)
+    .filter(([k]) => k.startsWith(`${name}__${kpiId}__`) && weekToQuarter(k.split('__')[2])===qk)
+    .reduce((sum,[,v]) => sum+v.value, 0);
 }
 
-function hasAnyTarget(name, dept, qk) {
-  return activeKpisForDept(dept).some(k => S.targets[tKey(name,k.id,qk)] !== undefined);
-}
-
-// ── VIEW MANAGEMENT ───────────────────────────────────────
+// ── VIEW MANAGEMENT ────────────────────────────────────────
 function showView(id) {
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -448,14 +533,15 @@ function showView(id) {
 function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
-  if (tab==='submit') {
-    if (S.session) { renderSubmitView(); showView('v-submit'); }
-    else showView('v-select');
+  if (tab==='submit'||tab==='progress') {
+    if (!S.session) { showView('v-login'); return; }
+    if (tab==='submit')   { renderSubmitView();  showView('v-submit'); }
+    if (tab==='progress') { renderProgress();    showView('v-progress'); }
   } else if (tab==='dashboard') { renderDashboard(); showView('v-dashboard'); }
-  else if (tab==='admin') { renderAdmin(); showView('v-admin'); }
+  else if (tab==='admin')       { renderAdmin();     showView('v-admin'); }
 }
 
-// ── HEADER PILL ───────────────────────────────────────────
+// ── HEADER PILL ────────────────────────────────────────────
 function updatePill() {
   const av = document.getElementById('pill-avatar');
   const nm = document.getElementById('pill-name');
@@ -464,149 +550,193 @@ function updatePill() {
     av.style.background = `linear-gradient(135deg,var(--sky),var(--navy))`;
     nm.textContent = S.session.name;
   } else {
-    av.textContent='?'; av.style.background='var(--muted)'; nm.textContent='Select User';
+    av.textContent='?'; av.style.background='var(--muted)'; nm.textContent='Log In';
   }
 }
 
 function handleUserPillClick() {
-  if (!S.session) return;
-  if (confirm(`Switch user? Session for ${S.session.name} will be cleared.`)) {
-    S.session=null; saveSession(); updatePill(); switchTab('submit');
+  if (!S.session) { switchTab('submit'); return; }
+  if (confirm(`Log out ${S.session.name}?`)) {
+    S.session=null; saveSession(); updatePill(); showView('v-login');
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-submit').classList.add('active');
   }
+}
+
+// ── LOGIN ──────────────────────────────────────────────────
+function handleLogin() {
+  const name = document.getElementById('sel-name').value;
+  const pin  = document.getElementById('inp-pin').value.trim();
+  const err  = document.getElementById('login-error');
+  if (!name) { err.textContent='Please select your name.'; err.classList.add('show'); return; }
+  if (pin !== getPin(name)) { err.textContent='Incorrect PIN. Please try again.'; err.classList.add('show'); document.getElementById('inp-pin').value=''; return; }
+  err.classList.remove('show');
+  S.session = { name, setAt: new Date().toISOString() };
+  saveSession(); updatePill();
+  const qk = myQuarterKey();
+  const kpiIds = getUserKpiIds(name, qk);
+  if (!kpiIds) { renderKpiSelect(); showView('v-kpi-select'); }
+  else if (!kpiIds.some(id => S.targets[tKey(name,id,qk)]!==undefined)) { renderTargetsView(); showView('v-targets'); }
+  else { renderSubmitView(); showView('v-submit'); document.getElementById('tab-submit').classList.add('active'); document.getElementById('tab-progress').classList.remove('active'); }
 }
 
 // ── BOOT ──────────────────────────────────────────────────
 function init() {
   load();
-  // Populate staff select
   const sn = document.getElementById('sel-name');
-  STAFF.forEach(n=>{ const o=document.createElement('option'); o.value=n; o.textContent=n; sn.appendChild(o); });
-  // Populate dept selects
-  ['sel-dept','new-kpi-dept'].forEach(id=>{
+  STAFF.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;sn.appendChild(o);});
+  ['new-kpi-dept'].forEach(id=>{
     const el=document.getElementById(id);
-    Object.entries(DEPTS).forEach(([k,d])=>{ const o=document.createElement('option'); o.value=k; o.textContent=d.label; el.appendChild(o); });
+    Object.entries(DEPTS).forEach(([k,d])=>{const o=document.createElement('option');o.value=k;o.textContent=d.label;el.appendChild(o);});
   });
   updatePill();
-  if (S.session) { renderSubmitView(); showView('v-submit'); }
-  else showView('v-select');
-  renderDashboard();
-  renderAdmin();
+  if (S.session) {
+    const qk = myQuarterKey();
+    const kpiIds = getUserKpiIds(S.session.name, qk);
+    if (!kpiIds) { renderKpiSelect(); showView('v-kpi-select'); }
+    else if (!kpiIds.some(id=>S.targets[tKey(S.session.name,id,qk)]!==undefined)) { renderTargetsView(); showView('v-targets'); }
+    else { renderSubmitView(); showView('v-submit'); }
+  } else { showView('v-login'); }
+  renderDashboard(); renderAdmin();
 }
 
-// ── SCREEN 1: SELECT ─────────────────────────────────────
-function handleSelectNext() {
-  const name = document.getElementById('sel-name').value;
-  const dept = document.getElementById('sel-dept').value;
-  if (!name) { alert('Please select your name.'); return; }
-  if (!dept) { alert('Please select your department.'); return; }
-  S.session = { name, dept, setAt:new Date().toISOString() };
-  saveSession(); updatePill();
+// ── KPI SELECTION ─────────────────────────────────────────
+function renderKpiSelect() {
   const qk = myQuarterKey();
-  if (!hasAnyTarget(name, dept, qk)) { renderTargetsView(); showView('v-targets'); }
-  else { renderSubmitView(); showView('v-submit'); }
+  const qi = getQuarterInfo(qk);
+  document.getElementById('kpi-sel-sub').textContent = `Choose the KPIs you are responsible for — ${S.session.name}`;
+  document.getElementById('kpi-sel-qk').textContent = qi.label;
+  document.getElementById('kpi-sel-range').textContent = qi.range;
+  document.getElementById('kpi-sel-weeks').textContent = `${qi.weeksLeft} weeks remaining`;
+  const existing = getUserKpiIds(S.session.name, qk) || [];
+  const activeKpis = S.kpis.filter(k=>k.active);
+  document.getElementById('kpi-check-list').innerHTML = activeKpis.map(k => {
+    const checked = existing.includes(k.id);
+    const dept = DEPTS[k.dept]?.label || k.dept;
+    return `<div class="kpi-check-item${checked?' checked':''}" onclick="toggleKpiCheck(this,'${k.id}')">
+      <div class="kpi-check-body">
+        <div class="kpi-check-name">${k.label}</div>
+        <div class="kpi-check-meta">${dept} · ${k.unit}</div>
+      </div>
+      <div class="kpi-check-icon">${checked?'✓':'○'}</div>
+    </div>`;
+  }).join('');
 }
 
-// ── SCREEN 2: TARGETS ────────────────────────────────────
+function toggleKpiCheck(el, kpiId) {
+  el.classList.toggle('checked');
+  el.querySelector('.kpi-check-icon').textContent = el.classList.contains('checked') ? '✓' : '○';
+}
+
+function handleSaveKpiSelect() {
+  const checked = [...document.querySelectorAll('.kpi-check-item.checked')];
+  if (!checked.length) { alert('Please select at least one KPI.'); return; }
+  const ids = checked.map(el => {
+    const onclick = el.getAttribute('onclick');
+    return onclick.match(/'([^']+)'/)[1];
+  });
+  const qk = myQuarterKey();
+  S.userKpis[`${S.session.name}__${qk}`] = ids;
+  saveUserKpis(); renderTargetsView(); showView('v-targets');
+}
+
+// ── TARGETS ───────────────────────────────────────────────
 function renderTargetsView() {
-  const {name,dept} = S.session;
+  const name = S.session.name;
   const qk = myQuarterKey();
-  document.getElementById('targets-sub').textContent = `${name} · ${DEPTS[dept].label} · ${qk}`;
-  const kpis = activeKpisForDept(dept);
+  const qi = getQuarterInfo(qk);
+  document.getElementById('targets-qk').textContent = qi.label;
+  document.getElementById('targets-range').textContent = qi.range;
+  document.getElementById('targets-weeks').textContent = `${qi.weeksLeft} weeks remaining`;
+  const ids = getUserKpiIds(name, qk) || [];
+  const kpis = ids.map(id => S.kpis.find(k=>k.id===id)).filter(Boolean);
   const el = document.getElementById('targets-list');
-  if (!kpis.length) {
-    el.innerHTML='<div class="empty-state"><div class="empty-icon">📭</div>No active KPIs for this department</div>';
-    return;
-  }
+  if (!kpis.length) { el.innerHTML='<div class="empty-state"><div class="empty-icon">📭</div>No KPIs selected</div>'; return; }
   el.innerHTML = kpis.map(k=>{
     const val = S.targets[tKey(name,k.id,qk)] ?? '';
     return `<div class="target-row">
-      <div class="target-row-info">
-        <div class="target-row-label">${k.label}</div>
-        <div class="target-row-unit">${k.unit}</div>
+      <div class="target-row-top">
+        <div class="target-row-label">${k.label}<br><span style="font-size:.7rem;font-weight:500;color:var(--muted)">${k.unit} · ${qi.label}</span></div>
+        <input type="number" min="0" placeholder="0" value="${val}" id="ti-${k.id}" />
       </div>
-      <input type="number" min="0" placeholder="0" value="${val}" id="ti-${k.id}" />
+      ${k.hint ? `<div class="target-row-hint">${k.hint}</div>` : ''}
     </div>`;
   }).join('');
 }
 
 function handleSaveTargets() {
-  const {name,dept} = S.session;
-  const qk = myQuarterKey();
-  const kpis = activeKpisForDept(dept);
+  const name = S.session.name; const qk = myQuarterKey();
+  const ids = getUserKpiIds(name, qk) || [];
+  const kpis = ids.map(id=>S.kpis.find(k=>k.id===id)).filter(Boolean);
   let ok = true;
   kpis.forEach(k=>{
     const v = document.getElementById('ti-'+k.id)?.value.trim();
     if (v===''||isNaN(Number(v))) { ok=false; }
     else S.targets[tKey(name,k.id,qk)] = Number(v);
   });
-  if (!ok) { alert('Please fill in all quarterly targets.'); return; }
+  if (!ok) { alert('Please fill in a target for every KPI.'); return; }
   saveTargets(); renderSubmitView(); showView('v-submit');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-submit').classList.add('active');
 }
 
-// ── SCREEN 3: SUBMIT ─────────────────────────────────────
+// ── SUBMIT ────────────────────────────────────────────────
 function renderSubmitView() {
   if (!S.session) return;
-  const {name,dept} = S.session;
-  const wk = myWeekKey();
-  document.getElementById('submit-sub').textContent =
-    `${name} · ${DEPTS[dept].label} · Week of ${fmtWeek(wk)}`;
-  const kpis = activeKpisForDept(dept);
+  const name = S.session.name; const qk = myQuarterKey(); const wk = myWeekKey();
+  document.getElementById('submit-sub').textContent = `${name} · Week of ${fmtWeek(wk)}`;
+  const ids = getUserKpiIds(name, qk) || [];
+  const kpis = ids.map(id=>S.kpis.find(k=>k.id===id&&k.active)).filter(Boolean);
   const sel = document.getElementById('sel-kpi');
   sel.innerHTML = kpis.length
     ? kpis.map(k=>`<option value="${k.id}">${k.label}</option>`).join('')
-    : '<option value="">No active KPIs</option>';
-  handleKpiChange();
-  renderSubmitLog();
+    : '<option value="">No KPIs selected — tap "Change my KPIs"</option>';
+  handleKpiChange(); renderSubmitLog();
 }
 
 function handleKpiChange() {
   if (!S.session) return;
-  const {name,dept} = S.session;
+  const name = S.session.name;
   const kpiId = document.getElementById('sel-kpi').value;
   const chip  = document.getElementById('submit-target-chip');
   const kpi   = S.kpis.find(k=>k.id===kpiId);
   if (kpi) {
     const t = S.targets[tKey(name,kpiId,myQuarterKey())];
-    if (t !== undefined) { chip.textContent=`Target: ${t} ${kpi.unit}`; chip.classList.remove('hidden'); }
+    if (t!==undefined) { chip.textContent=`Q target: ${t} ${kpi.unit}`; chip.classList.remove('hidden'); }
     else chip.classList.add('hidden');
   } else chip.classList.add('hidden');
 }
 
 function handleSubmitKpi() {
   if (!S.session) return;
-  const {name,dept} = S.session;
-  const kpiId  = document.getElementById('sel-kpi').value;
+  const name = S.session.name;
+  const kpiId = document.getElementById('sel-kpi').value;
   const actual = document.getElementById('inp-actual').value.trim();
   const notes  = document.getElementById('inp-notes').value.trim();
   if (!kpiId)  { alert('Please select a KPI.'); return; }
   if (actual===''||isNaN(Number(actual))) { alert('Please enter a valid value.'); return; }
-  const wk  = myWeekKey();
-  const qk  = myQuarterKey();
+  const wk = myWeekKey(); const qk = myQuarterKey();
   const kpi = S.kpis.find(k=>k.id===kpiId);
   const target = S.targets[tKey(name,kpiId,qk)];
-  S.actuals[aKey(name,kpiId,wk)] = {
-    value:Number(actual), notes, time:myTime(),
-    dept, kpiLabel:kpi?.label||kpiId, kpiUnit:kpi?.unit||''
-  };
+  S.actuals[aKey(name,kpiId,wk)] = { value:Number(actual), notes, time:myTime(), kpiLabel:kpi?.label||kpiId, kpiUnit:kpi?.unit||'', dept:kpi?.dept||'' };
   saveActuals();
-  renderConfirmation({name,dept,kpi,actual:Number(actual),target,notes,wk,qk});
-  document.getElementById('inp-actual').value='';
-  document.getElementById('inp-notes').value='';
-  showView('v-confirm');
-  renderDashboard();
+  renderConfirmation({name, kpi, actual:Number(actual), target, notes, wk, qk});
+  document.getElementById('inp-actual').value=''; document.getElementById('inp-notes').value='';
+  showView('v-confirm'); renderDashboard();
 }
 
-// ── SCREEN 4: CONFIRMATION ───────────────────────────────
-function renderConfirmation({name,dept,kpi,actual,target,notes,wk,qk}) {
+// ── CONFIRMATION ──────────────────────────────────────────
+function renderConfirmation({name,kpi,actual,target,notes,wk,qk}) {
   const pct = target!==undefined ? Math.round(actual/target*100) : null;
-  document.getElementById('confirm-sub').textContent = `${name} · ${DEPTS[dept].label}`;
+  const qtotal = getQuarterTotal(name, kpi?.id, qk);
+  document.getElementById('confirm-sub').textContent = name;
   const rows = [
-    {k:'KPI',    v: kpi?.label||'—'},
-    {k:'Value',  v: `${actual} ${kpi?.unit||''}`},
-    {k:'Target', v: target!==undefined ? `${target} ${kpi?.unit||''}` : 'Not set'},
-    {k:'Progress',v: pct!==null ? `${pct}%` : '—'},
-    {k:'Week',   v: fmtWeek(wk)},
-    {k:'Quarter',v: qk},
+    {k:'KPI',      v: kpi?.label||'—'},
+    {k:'This week',v: `${actual} ${kpi?.unit||''}`},
+    {k:'Q target', v: target!==undefined ? `${target} ${kpi?.unit||''}` : 'Not set'},
+    {k:'Q total so far', v: `${qtotal} ${kpi?.unit||''}`},
+    {k:'Q progress',v: target!==undefined ? `${Math.round(qtotal/target*100)}%` : '—'},
+    {k:'Week',     v: fmtWeek(wk)},
   ];
   if (notes) rows.push({k:'Notes',v:notes});
   document.getElementById('confirm-detail').innerHTML =
@@ -615,43 +745,71 @@ function renderConfirmation({name,dept,kpi,actual,target,notes,wk,qk}) {
 
 function handleSubmitAnother() { renderSubmitLog(); showView('v-submit'); }
 
-// ── SUBMIT LOG ───────────────────────────────────────────
 function renderSubmitLog() {
   if (!S.session) return;
-  const {name} = S.session;
-  const wk = myWeekKey(); const qk = myQuarterKey();
+  const name = S.session.name; const wk = myWeekKey(); const qk = myQuarterKey();
   const entries = Object.entries(S.actuals)
     .filter(([k])=>k.startsWith(name+'__')&&k.endsWith('__'+wk))
     .map(([k,v])=>({kpiId:k.split('__')[1],...v}))
     .sort((a,b)=>b.time.localeCompare(a.time));
   const el = document.getElementById('submit-log');
-  if (!entries.length) {
-    el.innerHTML='<div class="empty-state" style="padding:14px 0"><div class="empty-icon">📭</div>No submissions this week yet</div>';
-    return;
-  }
+  if (!entries.length) { el.innerHTML='<div class="empty-state" style="padding:14px 0"><div class="empty-icon">📭</div>No submissions this week yet</div>'; return; }
   el.innerHTML = entries.map(e=>{
     const t = S.targets[tKey(name,e.kpiId,qk)];
     const pct = t!==undefined ? e.value/t : null;
     const bc = pct===null?'neutral':pct>=1?'on':pct>=0.6?'neutral':'off';
-    const bt = t!==undefined?`${e.value} / ${t} ${e.kpiUnit}`:`${e.value} ${e.kpiUnit}`;
+    const bt = t!==undefined ? `${e.value} / ${t} ${e.kpiUnit}` : `${e.value} ${e.kpiUnit}`;
     return `<div class="log-item">
       <div class="log-avatar" style="background:${avatarBg(name)}">${initials(name)}</div>
       <div class="log-body">
-        <div class="log-name">${name} <span class="log-tag">${DEPTS[e.dept]?.short||e.dept}</span></div>
+        <div class="log-name">${name}</div>
         <div class="log-kpi">${e.kpiLabel}</div>
       </div>
-      <div class="log-right">
-        <span class="log-badge ${bc}">${bt}</span>
-        <span class="log-time">${e.time}</span>
-      </div>
+      <div class="log-right"><span class="log-badge ${bc}">${bt}</span><span class="log-time">${e.time}</span></div>
     </div>`;
   }).join('');
 }
 
-// ── DASHBOARD ────────────────────────────────────────────
+// ── MY PROGRESS ───────────────────────────────────────────
+function renderProgress() {
+  if (!S.session) return;
+  const name = S.session.name; const qk = myQuarterKey();
+  const qi = getQuarterInfo(qk);
+  document.getElementById('prog-sub').textContent = `${name} · Cumulative totals vs quarterly targets`;
+  document.getElementById('prog-qk').textContent = qi.label;
+  document.getElementById('prog-range').textContent = qi.range;
+  document.getElementById('prog-weeks').textContent = `${qi.weeksLeft} weeks remaining`;
+  const ids = getUserKpiIds(name, qk) || [];
+  const kpis = ids.map(id=>S.kpis.find(k=>k.id===id)).filter(Boolean);
+  const el = document.getElementById('prog-list');
+  if (!kpis.length) { el.innerHTML='<div class="empty-state"><div class="empty-icon">📭</div>No KPIs selected for this quarter</div>'; return; }
+  el.innerHTML = kpis.map(k=>{
+    const target = S.targets[tKey(name,k.id,qk)];
+    const actual = getQuarterTotal(name, k.id, qk);
+    const pct = target ? Math.min(Math.round(actual/target*100),100) : 0;
+    let fillCls, pctCls;
+    if (!target)     { fillCls=''; pctCls=''; }
+    else if (pct>=80){ fillCls='green'; pctCls='green'; }
+    else if (pct>=60){ fillCls='amber'; pctCls='amber'; }
+    else             { fillCls='red-fill'; pctCls='red'; }
+    const dept = DEPTS[k.dept]?.label || k.dept;
+    return `<div class="prog-card">
+      <div class="prog-kpi-name">${k.label}</div>
+      <div class="prog-kpi-dept">${dept}</div>
+      <div class="prog-nums">
+        <span class="prog-actual">${actual}</span>
+        <span class="prog-target">/ ${target!==undefined?target:'—'} ${k.unit}</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill ${fillCls}" style="width:${pct}%"></div></div>
+      <div class="prog-pct ${pctCls}">${target!==undefined ? pct+'% of quarterly target' : 'No target set'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────
 function renderDashboard() {
   const wk = myWeekKey(); const qk = myQuarterKey();
-  document.getElementById('dash-sub').textContent = `Team progress · ${qk}`;
+  document.getElementById('dash-sub').textContent = `Team weekly progress · ${qk}`;
   document.getElementById('dash-week-label').textContent = `Week of ${fmtWeek(wk)}`;
   let html = '';
   Object.entries(DEPTS).forEach(([dk,dept])=>{
@@ -661,122 +819,126 @@ function renderDashboard() {
     kpis.forEach(kpi=>{
       let totalTarget=0, totalActual=0, actualCount=0;
       STAFF.forEach(name=>{
-        const tv = S.targets[tKey(name,kpi.id,qk)];
-        if (tv!==undefined) totalTarget+=tv;
-        const av = S.actuals[aKey(name,kpi.id,wk)];
-        if (av!==undefined) { totalActual+=av.value; actualCount++; }
+        const tv = S.targets[tKey(name,kpi.id,qk)]; if (tv!==undefined) totalTarget+=tv;
+        const av = S.actuals[aKey(name,kpi.id,wk)]; if (av!==undefined){totalActual+=av.value;actualCount++;}
       });
       const weeklyTarget = totalTarget ? Math.round(totalTarget/13) : 0;
       const pct = weeklyTarget ? Math.min(Math.round(totalActual/weeklyTarget*100),100) : 0;
-      let ragClass,ragLabel,fillClass;
-      if (!weeklyTarget) { ragClass='rag-none'; ragLabel='No target'; fillClass=''; }
-      else if (pct>=80)  { ragClass='rag-green'; ragLabel=`${pct}%`; fillClass='green'; }
-      else if (pct>=60)  { ragClass='rag-amber'; ragLabel=`${pct}%`; fillClass='amber'; }
-      else               { ragClass='rag-red';   ragLabel=`${pct}%`; fillClass='red-fill'; }
-      html += `<div class="kpi-row">
+      let rc,rl,fc;
+      if (!weeklyTarget){rc='rag-none';rl='No target';fc='';}
+      else if(pct>=80){rc='rag-green';rl=`${pct}%`;fc='green';}
+      else if(pct>=60){rc='rag-amber';rl=`${pct}%`;fc='amber';}
+      else{rc='rag-red';rl=`${pct}%`;fc='red-fill';}
+      html+=`<div class="kpi-row">
         <div class="kpi-row-body">
           <div class="kpi-row-name">${kpi.label}</div>
-          <div class="kpi-row-meta">${totalActual} / ${weeklyTarget} ${kpi.unit} · ${actualCount} submitted</div>
-          <div class="progress-bar"><div class="progress-fill ${fillClass}" style="width:${pct}%"></div></div>
+          <div class="kpi-row-meta">${totalActual} / ${weeklyTarget} ${kpi.unit} this week · ${actualCount} submitted</div>
+          <div class="progress-bar"><div class="progress-fill ${fc}" style="width:${pct}%"></div></div>
         </div>
-        <div class="kpi-row-right"><span class="rag-badge ${ragClass}">${ragLabel}</span></div>
+        <div class="kpi-row-right"><span class="rag-badge ${rc}">${rl}</span></div>
       </div>`;
     });
-    html += '</div>';
+    html+='</div>';
   });
-  document.getElementById('dashboard-content').innerHTML =
-    html || '<div class="empty-state"><div class="empty-icon">📊</div>No KPIs configured</div>';
-  // individual log
+  document.getElementById('dashboard-content').innerHTML = html||'<div class="empty-state"><div class="empty-icon">📊</div>No KPIs configured</div>';
+  // log
   const entries = Object.entries(S.actuals)
     .filter(([k])=>k.endsWith('__'+wk))
-    .map(([k,v])=>{ const p=k.split('__'); return {name:p[0],kpiId:p[1],...v}; })
+    .map(([k,v])=>{const p=k.split('__');return{name:p[0],kpiId:p[1],...v};})
     .sort((a,b)=>b.time.localeCompare(a.time));
   const logEl = document.getElementById('dash-log');
-  if (!entries.length) {
-    logEl.innerHTML='<div class="empty-state" style="padding:14px 0"><div class="empty-icon">📭</div>No submissions this week yet</div>';
-    return;
-  }
+  if (!entries.length){logEl.innerHTML='<div class="empty-state" style="padding:14px 0"><div class="empty-icon">📭</div>No submissions this week yet</div>';return;}
   logEl.innerHTML = entries.map(e=>{
-    const t = S.targets[tKey(e.name,e.kpiId,qk)];
-    const pct = t!==undefined ? e.value/t : null;
-    const bc = pct===null?'neutral':pct>=1?'on':pct>=0.6?'neutral':'off';
-    const bt = t!==undefined?`${e.value} / ${t} ${e.kpiUnit}`:`${e.value} ${e.kpiUnit}`;
-    return `<div class="log-item">
+    const t=S.targets[tKey(e.name,e.kpiId,qk)];
+    const pct=t!==undefined?e.value/t:null;
+    const bc=pct===null?'neutral':pct>=1?'on':pct>=0.6?'neutral':'off';
+    const bt=t!==undefined?`${e.value} / ${t} ${e.kpiUnit}`:`${e.value} ${e.kpiUnit}`;
+    const deptShort=DEPTS[e.dept]?.short||e.dept||'';
+    return`<div class="log-item">
       <div class="log-avatar" style="background:${avatarBg(e.name)}">${initials(e.name)}</div>
       <div class="log-body">
-        <div class="log-name">${e.name} <span class="log-tag">${DEPTS[e.dept]?.short||e.dept}</span></div>
+        <div class="log-name">${e.name}${deptShort?` <span class="log-tag">${deptShort}</span>`:''}</div>
         <div class="log-kpi">${e.kpiLabel}</div>
       </div>
-      <div class="log-right">
-        <span class="log-badge ${bc}">${bt}</span>
-        <span class="log-time">${e.time}</span>
-      </div>
+      <div class="log-right"><span class="log-badge ${bc}">${bt}</span><span class="log-time">${e.time}</span></div>
     </div>`;
   }).join('');
 }
 
-// ── ADMIN ─────────────────────────────────────────────────
+// ── ADMIN ──────────────────────────────────────────────────
 function renderAdmin() {
   const qk = myQuarterKey();
   document.getElementById('admin-quarter').textContent = qk;
   document.getElementById('admin-submissions').textContent = Object.keys(S.actuals).length;
-  document.getElementById('admin-targets').textContent =
-    new Set(Object.keys(S.targets).map(k=>k.split('__')[0])).size;
-  const activeCount = S.kpis.filter(k=>k.active).length;
-  document.getElementById('admin-active').textContent = `${activeCount} / ${S.kpis.length}`;
-  let html = '';
+  document.getElementById('admin-targets').textContent = new Set(Object.keys(S.targets).map(k=>k.split('__')[0])).size;
+  const ac = S.kpis.filter(k=>k.active).length;
+  document.getElementById('admin-active').textContent = `${ac} / ${S.kpis.length}`;
+  // KPI list
+  let html='';
   Object.entries(DEPTS).forEach(([dk,dept])=>{
-    const kpis = S.kpis.filter(k=>k.dept===dk);
+    const kpis=S.kpis.filter(k=>k.dept===dk);
     if (!kpis.length) return;
-    html += `<div class="dept-label" style="margin:0 0 8px">${dept.label}</div>`;
+    html+=`<div class="dept-label" style="margin:0 0 8px">${dept.label}</div>`;
     kpis.forEach(k=>{
-      html += `<div class="kpi-manage-item">
+      html+=`<div class="kpi-manage-item">
         <div class="kpi-manage-body">
           <div class="kpi-manage-name">${k.label}</div>
           <div class="kpi-manage-meta">${k.unit} · ${k.active?'Active':'Inactive'}</div>
         </div>
-        <label class="toggle">
-          <input type="checkbox" ${k.active?'checked':''} onchange="toggleKpi('${k.id}',this.checked)" />
-          <span class="toggle-slider"></span>
-        </label>
+        <label class="toggle"><input type="checkbox" ${k.active?'checked':''} onchange="toggleKpi('${k.id}',this.checked)" /><span class="toggle-slider"></span></label>
       </div>`;
     });
-    html += '<div style="margin-bottom:16px"></div>';
+    html+='<div style="margin-bottom:14px"></div>';
   });
-  document.getElementById('admin-kpi-list').innerHTML =
-    html || '<div class="empty-state"><div class="empty-icon">📭</div>No KPIs yet</div>';
+  document.getElementById('admin-kpi-list').innerHTML = html||'<div class="empty-state"><div class="empty-icon">📭</div>No KPIs yet</div>';
+  // PIN list
+  let pinHtml = STAFF.map(name=>{
+    const pin = getPin(name);
+    return`<div class="pin-row">
+      <div class="pin-row-name">${name}</div>
+      <div class="pin-display">PIN: ${pin}</div>
+      <button class="btn-pin-reset" onclick="handleResetPin('${name}')">Reset</button>
+    </div>`;
+  }).join('');
+  document.getElementById('admin-pin-list').innerHTML = pinHtml;
 }
 
 function toggleKpi(id, active) {
-  const k = S.kpis.find(k=>k.id===id);
-  if (k) { k.active=active; saveKpis(); renderAdmin(); renderDashboard(); }
+  const k=S.kpis.find(k=>k.id===id); if(k){k.active=active;saveKpis();renderAdmin();renderDashboard();}
 }
 
 function handleAddKpi() {
-  const name = document.getElementById('new-kpi-name').value.trim();
-  const dept = document.getElementById('new-kpi-dept').value;
-  const unit = document.getElementById('new-kpi-unit').value.trim();
-  if (!name) { alert('Please enter a KPI name.'); return; }
-  if (!unit) { alert('Please enter a unit.'); return; }
-  S.kpis.push({ id:'custom_'+Date.now(), dept, label:name, unit, active:true });
+  const name=document.getElementById('new-kpi-name').value.trim();
+  const dept=document.getElementById('new-kpi-dept').value;
+  const unit=document.getElementById('new-kpi-unit').value.trim();
+  const hint=document.getElementById('new-kpi-hint').value.trim();
+  if (!name){alert('Please enter a KPI name.');return;}
+  if (!unit){alert('Please enter a unit.');return;}
+  S.kpis.push({id:'custom_'+Date.now(),dept,label:name,unit,hint,active:true});
   saveKpis();
   document.getElementById('new-kpi-name').value='';
   document.getElementById('new-kpi-unit').value='';
-  renderAdmin(); renderDashboard();
-  alert(`"${name}" added to ${DEPTS[dept].label}.`);
+  document.getElementById('new-kpi-hint').value='';
+  renderAdmin();renderDashboard();
+  alert(`"${name}" added successfully.`);
+}
+
+function handleResetPin(name) {
+  if (!confirm(`Reset PIN for ${name} to 0000?`)) return;
+  S.pins[name]='0000'; savePins(); renderAdmin();
+  alert(`${name}'s PIN has been reset to 0000.`);
 }
 
 function handleClearWeek() {
-  const wk = myWeekKey();
-  if (!confirm(`Clear all submissions for week of ${fmtWeek(wk)}? This cannot be undone.`)) return;
-  Object.keys(S.actuals).forEach(k=>{ if(k.endsWith('__'+wk)) delete S.actuals[k]; });
-  saveActuals(); renderDashboard(); renderAdmin();
-  if (S.session) renderSubmitLog();
+  const wk=myWeekKey();
+  if (!confirm(`Clear all submissions for week of ${fmtWeek(wk)}? Cannot be undone.`)) return;
+  Object.keys(S.actuals).forEach(k=>{if(k.endsWith('__'+wk))delete S.actuals[k];});
+  saveActuals();renderDashboard();renderAdmin();
+  if(S.session)renderSubmitLog();
   alert('Week cleared.');
 }
 
-// ── START ─────────────────────────────────────────────────
-init();
-</script>
+// ── START ──────────────────────────────────────────────────
+init();</script>
 </body>
 </html>
